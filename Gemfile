@@ -8,13 +8,14 @@ gem 'pg', '~> 0.21'
 gem 'puma'
 gem 'rails', '6.0.2.2'
 gem 'redis'
-
+gem 'carrierwave', '~> 2.0'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'cancancan'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

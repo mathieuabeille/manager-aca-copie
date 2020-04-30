@@ -1,0 +1,61 @@
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: $green;
+  transition: background 0.3s ease;
+}
+
+.btn-flat:hover {
+  background: #1BCB7F;
+  color: white;
+  text-decoration: none;
+
+}
+
+
+.btn-flat-small {
+  color: white;
+  padding: 4px 12px;
+  border-radius: 2px;
+  background: $green;
+  transition: background 0.3s ease;
+}
+
+.btn-flat-small:hover {
+  background: #1BCB7F;
+  color: white;
+  text-decoration: none;
+
+}
+
+
+.btn-flat-delete {
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 1px;
+  background: #FD1015;
+  transition: background 0.3s ease;
+}
+
+.btn-flat-delete:hover {
+  background: #d30a0d;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-flat-edit {
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 1px;
+  background: $blue;
+  transition: background 0.3s ease;
+}
+
+.btn-flat-edit:hover {
+  background: #00355e;
+  color: white;
+  text-decoration: none;
+}

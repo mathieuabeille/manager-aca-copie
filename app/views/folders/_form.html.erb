@@ -1,0 +1,15 @@
+
+<%= simple_form_for(@folder) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name, label: 'Nom du dossier' %>
+    <%= f.input :order, label: 'Ordre du dossier' %>
+    <%= f.input :managerAccess, label: 'Visible pour tous les utiliseurs, sinon seulement les administrateurs pourront voir contenu du dossier' %>
+  </div>
+
+  <div class="form-actions btn btn-flat">
+    <%= f.button  :submit, "Créer dossier" %>
+  </div>
+<% end %>

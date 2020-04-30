@@ -1,0 +1,23 @@
+<div class="container-list">
+  <div class="row">
+    <% @documents.each do |document| %>
+    <div class="col-lg-3 file">
+      <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+      <p>
+        <%= link_to 'Modifier',  edit_folder_document_path(@folder, document), class: "btn-flat-edit" %>
+        <%= link_to 'Supprimer',[@folder, document], method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn-flat-delete" %>
+      </p>
+      <% end %>
+      <%= link_to document.document.url do %>
+      <p><%= image_tag ( "file.png"), class: "image_link" %></p>
+      <p class="title"><%= document.name %></p>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+
+  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+  <%= link_to 'Ajouter un document', new_folder_document_path, class: "btn-flat" %>
+  <% end %>
+</div>
+

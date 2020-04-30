@@ -40,7 +40,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+  config.authentication_keys = [:login]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -113,6 +113,9 @@ Devise.setup do |config|
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
   config.stretches = Rails.env.test? ? 1 : 11
 
+
+  config.reset_password_keys = [ :username ]
+  config.confirmation_keys = [ :username ]
   # Set up a pepper to generate the hashed password.
   # config.pepper = 'b74e4c5a44d1ebe43166fe6de281b2a0034ace862be9dc4b4525fa127cdac69415e3c2917c4cdc94ba4cf72471badb1d5f42389be3cb1b09b4cf23e9ed09281b'
 
@@ -232,7 +235,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).

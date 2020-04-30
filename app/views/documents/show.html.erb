@@ -1,0 +1,18 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @document.name %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @document.order %>
+</p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @document.document %>
+</p>
+
+<%= link_to 'Edit', edit_document_path(@document) %> |
+<%= link_to 'Back', documents_path %>
