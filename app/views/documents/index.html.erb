@@ -14,6 +14,9 @@
       <% end %>
     </div>
     <% end %>
+    <p> <i>Crée le <%= document.created_at.to_date %></i> </p>
+    <p> <i>Modifié le <%= document.updated_at.to_date %></i> </p>
+
   </div>
 
   <% if current_user.superadmin_role? || current_user.supervisor_role? %>
