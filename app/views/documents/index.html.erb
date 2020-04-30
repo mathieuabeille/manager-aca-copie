@@ -12,10 +12,11 @@
       <p><%= image_tag ( "file.png"), class: "image_link" %></p>
       <p class="title"><%= document.name %></p>
       <% end %>
+      <p> <i>Crée le <%= document.created_at %></i> </p>
+      <p> <i>Modifié le <%= document.updated_at %></i> </p>
     </div>
     <% end %>
-    <p> <i>Crée le <%= document.created_at %></i> </p>
-    <p> <i>Modifié le <%= document.updated_at %></i> </p>
+
 
   </div>
 
