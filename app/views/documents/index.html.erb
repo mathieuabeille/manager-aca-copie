@@ -1,26 +1,40 @@
 <div class="container-list">
+
   <% if current_user.superadmin_role? || current_user.supervisor_role? %>
   <%= link_to 'Ajouter un document', new_folder_document_path, class: "btn-flat" %>
   <% end %>
-  <div class="row align-items-start">
-    <% @documents.each do |document| %>
-    <div class="col-lg-2 file ">
-      <% if current_user.superadmin_role? || current_user.supervisor_role? %>
-      <p>
-        <%= link_to 'Modifier',  edit_folder_document_path(@folder, document), class: "btn-flat-edit" %>
-        <%= link_to 'Supprimer',[@folder, document], method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn-flat-delete" %>
-      </p>
-      <% end %>
+
+  <% @documents.each do |document| %>
+
+  <div class="row document">
+
+    <div class="fileimg">
       <%= link_to document.document.url do %>
-      <p><%= image_tag ( "file.png"), class: "image_link" %></p>
-      <p class="title"><%= document.name %></p>
+      <%= image_tag ( "file.png"), class: "image_link" %>
       <% end %>
-      <div class="info">
-        <p> <i>Crée le <%= document.created_at %></i> </p>
-        <p> <i>Modifié le <%= document.updated_at %></i> </p>
-      </div>
+
     </div>
-    <% end %>
+
+    <div class="title">
+      <%= link_to document.document.url do %>
+      <%= document.name %>
+      <% end %>
+    </div>
+
+    <div class="info">
+      <p> <i>Crée le <%= document.created_at %></i> </p>
+      <p> <i>Modifié le <%= document.updated_at %></i> </p>
+    </div>
+
+    <div class="edit">
+      <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+      <%= link_to 'Modifier',  edit_folder_document_path(@folder, document), class: "btn-flat-edit" %>
+      <%= link_to 'Supprimer',[@folder, document], method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn-flat-delete" %>
+      <% end %>
+    </div>
+
   </div>
+  <% end %>
+
 </div>
 

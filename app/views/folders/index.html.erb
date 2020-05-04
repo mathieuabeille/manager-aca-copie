@@ -5,16 +5,17 @@
   <div class="row align-items-start">
     <% @folders.each do |folder| %>
     <div class="col-lg-2  file">
+
+
+      <%= link_to  folder_documents_path(folder) do %>
+      <p><%= image_tag ( "folder.png"), class: "image_link2" %></p>
+      <p class="title2"><%= folder.name %></p>
       <% if current_user.superadmin_role? || current_user.supervisor_role? %>
       <p>
         <%= link_to 'Modifier', edit_folder_path(folder), class: "btn-flat-edit" %>
         <%= link_to 'Supprimer', folder, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn-flat-delete" %>
       </p>
       <% end %>
-
-      <%= link_to  folder_documents_path(folder) do %>
-      <p><%= image_tag ( "folder.png"), class: "image_link" %></p>
-      <p class="title"><%= folder.name %></p>
       <% end %>
 
     </div>
