@@ -1,7 +1,10 @@
 <div class="container-list">
+  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+  <%= link_to 'Ajouter un document', new_folder_document_path, class: "btn-flat" %>
+  <% end %>
   <div class="row align-items-start">
     <% @documents.each do |document| %>
-    <div class="col-lg-3 file">
+    <div class="col-lg-2 file ">
       <% if current_user.superadmin_role? || current_user.supervisor_role? %>
       <p>
         <%= link_to 'Modifier',  edit_folder_document_path(@folder, document), class: "btn-flat-edit" %>
@@ -13,17 +16,11 @@
       <p class="title"><%= document.name %></p>
       <% end %>
       <div class="info">
-      <p> <i>Crée le <%= document.created_at %></i> </p>
-      <p> <i>Modifié le <%= document.updated_at %></i> </p>
+        <p> <i>Crée le <%= document.created_at %></i> </p>
+        <p> <i>Modifié le <%= document.updated_at %></i> </p>
       </div>
     </div>
     <% end %>
-
-
   </div>
-
-  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
-  <%= link_to 'Ajouter un document', new_folder_document_path, class: "btn-flat" %>
-  <% end %>
 </div>
 
