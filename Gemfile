@@ -16,6 +16,13 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'cancancan'
+gem 'rmagick' # optional, for image resizing support
+gem 'carrierwave_direct'
+gem "figaro"
+gem "fog-aws"
+
+
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'
