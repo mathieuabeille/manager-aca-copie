@@ -6,9 +6,12 @@
   background: $green;
   transition: background 0.3s ease;
 }
+.spacer{
+padding: 10px;
+}
 
 .btn-flat:hover {
-  background: #1BCB7F;
+  background: $blue;
   color: white;
   text-decoration: none;
 
@@ -25,7 +28,7 @@
 }
 
 .btn-flat:hover {
-  background: #1BCB7F;
+  background: $blue;
   color: white;
   text-decoration: none;
 
@@ -42,7 +45,7 @@
 }
 
 .btn-flat-small:hover {
-  background: #1BCB7F;
+  background: $blue;
   color: white;
   text-decoration: none;
 

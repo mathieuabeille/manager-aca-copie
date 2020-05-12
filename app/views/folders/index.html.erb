@@ -1,24 +1,42 @@
 <div class="container-list">
   <% if current_user.superadmin_role? || current_user.supervisor_role? %>
   <%= link_to 'Ajouter un dossier', new_folder_path, class: "btn-flat" %>
+  <div class="spacer"></div>
   <% end %>
-  <div class="row align-items-start">
-    <% @folders.each do |folder| %>
-    <div class="col-lg-2  file">
 
+  <% @folders.each do |folder| %>
+  <div class="row document">
 
-      <%= link_to  folder_documents_path(folder) do %>
-      <p><%= image_tag ( "folder.png"), class: "image_link2" %></p>
-      <p class="title2"><%= folder.name %></p>
-      <% if current_user.superadmin_role? || current_user.supervisor_role? %>
-      <p>
-        <%= link_to 'Modifier', edit_folder_path(folder), class: "btn-flat-edit" %>
-        <%= link_to 'Supprimer', folder, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn-flat-delete" %>
-      </p>
-      <% end %>
+    <div class="fileimg">
+      <%= link_to folder_documents_path(folder) do %>
+      <%= image_tag ( "folder.png"), class: "image_link" %>
       <% end %>
 
     </div>
-    <% end %>
+
+
+
+    <div class="title">
+      <%= link_to folder_documents_path(folder) do %>
+      <%= folder.name %>
+      <% end %>
+    </div>
+
+    <div class="info">
+      <p> <i>Crée le <%= folder.created_at %></i> </p>
+      <p> <i>Modifié le <%= folder.updated_at %></i> </p>
+    </div>
+
+
+    <div class="edit">
+      <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+      <%= link_to 'Modifier',  edit_folder_path(folder), class: "btn-flat-edit" %>
+      <%= link_to 'Supprimer',folder, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn-flat-delete" %>
+      <% end %>
+    </div>
+
   </div>
+  <% end %>
+
 </div>
+

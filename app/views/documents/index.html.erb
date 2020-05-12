@@ -2,6 +2,7 @@
 
   <% if current_user.superadmin_role? || current_user.supervisor_role? %>
   <%= link_to 'Ajouter un document', new_folder_document_path, class: "btn-flat" %>
+  <div class="spacer"></div>
   <% end %>
 
   <% @documents.each do |document| %>
@@ -23,18 +24,24 @@
 
     <div class="info">
       <p> <i>Crée le <%= document.created_at %></i> </p>
-      <p> <i>Modifié le <%= document.updated_at %></i> </p>
     </div>
+    <div class="info">
+     <p> <i>Modifié le <%= document.updated_at %></i> </p>
 
-    <div class="edit">
-      <% if current_user.superadmin_role? || current_user.supervisor_role? %>
-      <%= link_to 'Modifier',  edit_folder_document_path(@folder, document), class: "btn-flat-edit" %>
-      <%= link_to 'Supprimer',[@folder, document], method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn-flat-delete" %>
-      <% end %>
-    </div>
+   </div>
 
+
+   <div class="edit">
+    <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+    <%= link_to 'Modifier',  edit_folder_document_path(@folder, document), class: "btn-flat-edit" %>
+    <%= link_to 'Supprimer',[@folder, document], method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn-flat-delete" %>
+    <% end %>
   </div>
-  <% end %>
+
+</div>
+<% end %>
+<div class="spacer"></div>
+<%= link_to 'Retour',  root_path, class: "btn-flat-edit" %>
 
 </div>
 

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @material_comment.author %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @material_comment.comment %>
+</p>
+
+<p>
+  <strong>Material:</strong>
+  <%= @material_comment.material_id %>
+</p>
+
+<%= link_to 'Edit', edit_material_comment_path(@material_comment) %> |
+<%= link_to 'Back', material_comments_path %>

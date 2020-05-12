@@ -1,9 +1,6 @@
 .container-list {
   background-color: #fff;
-  margin: 10px;
-  border-radius: 10px;
-  width: 98vw;
-  padding: 20px;
+  padding: 40px;
   min-height: 90vh;
 }
 
@@ -98,7 +95,7 @@
 
 .info {
   font-size: 10px;
-  line-height: 1%;
+  line-height: 100%;
   display: table-cell;
   vertical-align: middle;
   padding-right: 10px;
@@ -146,10 +143,27 @@
 .document {
   display: table;
   vertical-align: middle;
-  padding-top: 10px;
+  padding: 10px;
   width: 100%;
   margin: auto;
-  margin-top: 10px;
+  border-bottom: solid;
+  border-color: $blue;
+  border-width: 1px;
+}
+
+tr {
+  display: table;
+  vertical-align: middle;
+  padding: 10px;
+  width: 100%;
+  margin: auto;
+  border-bottom: solid;
+  border-color: $blue;
+  border-width: 1px;
+}
+
+td:hover{
+  background-color: #f4f4f4;
 
 }
 
@@ -169,3 +183,37 @@
   display: table-cell;
   vertical-align: middle;
 }
+
+.card-product {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-product img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}
+

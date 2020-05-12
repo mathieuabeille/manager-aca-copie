@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :materials do
+    resources :material_comments
+  end
   resources :folders do
     resources :documents
   end
