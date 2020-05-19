@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :materials do
     resources :material_comments
   end
+  resources :filters
   resources :folders do
     resources :documents
   end

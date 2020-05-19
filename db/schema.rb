@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_133658) do
+ActiveRecord::Schema.define(version: 2020_05_19_144947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 2020_05_11_133658) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "folder_id", null: false
     t.index ["folder_id"], name: "index_documents_on_folder_id"
+  end
+
+  create_table "filters", force: :cascade do |t|
+    t.string "company"
+    t.string "materialtype"
+    t.string "supplier"
+    t.string "brand"
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "folders", force: :cascade do |t|
@@ -44,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_133658) do
 
   create_table "materials", force: :cascade do |t|
     t.string "company"
-    t.string "materialType"
+    t.string "materialtype"
     t.string "supplier"
     t.string "name"
     t.string "serial"
@@ -53,6 +63,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_133658) do
     t.string "invoice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "brand"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,56 +1,16 @@
+
+
+
 <div class="container-list">
   <% if current_user.superadmin_role? || current_user.supervisor_role? %>
   <%= link_to 'Ajouter un appareil', new_material_path, class: "btn-flat" %>
   <div class="spacer"></div>
   <% end %>
+    <%= render 'search' %>
+
   <div class="spacer"></div>
 
-  <div class="search">
-   <div id="search">
-    <%= simple_form_for :search, url: materials_path, method: "GET", html: { class: 'form-inline' } do |f| %>
-    <%= f.input :name, input_html: {value: ""}, label: false %>
-    <%= f.submit "Rechercher", class: "btn btn-flat" %>
-    <% end %>
-    <%= link_to "Annuler", materials_path, class: "btn-flat-edit" %>
-
-  </div>
-
+   <div class="spacer"></div>
+  <%= render 'materials', materials: @materials %>
 </div>
-<div class="spacer"></div>
-<% @materials.each do |material| %>
 
-<div class="row document">
-
-  <div class="fileimg">
-    <%= link_to material do %>
-    <%= image_tag ( "file.png"), class: "image_link" %>
-    <% end %>
-
-  </div>
-
-  <div class="info">
-    <%= link_to material do %>
-    <%= material.name %>
-    <% end %>
-  </div>
-
-  <div class="info"><%= material.company %></div>
-  <div class="info"><%= material.materialType %></div>
-  <div class="info"><%= material.supplier %></div>
-  <div class="info"><%= material.serial %></div>
-  <div class="info"><%= material.number %></div>
-  <div class="info"><%= material.location %></div>
-
-
-  <div class="edit">
-    <% if current_user.superadmin_role? || current_user.supervisor_role? %>
-    <%= link_to 'Voir', material, class: "btn-flat-edit" %>
-    <%= link_to 'Modifier', edit_material_path(material), class: "btn-flat-edit" %>
-    <%= link_to 'Supprimer', material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-flat-edit" %>
-    <% end %>
-  </div>
-</div>
-<% end %>
-
-
-</div>

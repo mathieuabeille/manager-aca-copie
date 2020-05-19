@@ -1,0 +1,35 @@
+<% @materials.each do |material| %>
+
+<div class="row document">
+
+  <div class="fileimg">
+    <%= link_to material do %>
+    <%= image_tag ( "file.png"), class: "image_link" %>
+    <% end %>
+
+  </div>
+
+  <div class="info">
+    <%= link_to material do %>
+    <%= material.name %>
+    <% end %>
+  </div>
+
+  <div class="info"><%= material.company %></div>
+  <div class="info"><%= material.materialtype %></div>
+  <div class="info"><%= material.supplier %></div>
+  <div class="info"><%= material.serial %></div>
+  <div class="info"><%= material.brand %></div>
+  <div class="info"><%= material.number %></div>
+  <div class="info"><%= material.location %></div>
+
+
+  <div class="edit">
+    <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+    <%= link_to 'Voir', material, class: "btn-flat-edit" %>
+    <%= link_to 'Modifier', edit_material_path(material), class: "btn-flat-edit" %>
+    <%= link_to 'Supprimer', material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-flat-edit" %>
+    <% end %>
+  </div>
+</div>
+<% end %>

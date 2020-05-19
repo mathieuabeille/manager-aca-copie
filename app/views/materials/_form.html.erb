@@ -5,11 +5,13 @@
 
 <div class="form-inputs">
   <%= f.input :company, label: "Entité" %>
-  <%= f.input :materialType, label: "Type" %>
+  <%= f.input :materialtype, label: "Type" %>
   <%= f.input :supplier, label: "Fournisseur" %>
   <%= f.input :name, label: "Nom du materiel" %>
   <%= f.input :serial, label: "Numero de serie" %>
   <%= f.input :number, label: "Numero de materiel" %>
+  <%= f.input :brand, label: "Marque" %>
+
   <%= f.input :location, label: "Emplacement" %>
   <%= f.label :invoice %>
   <p>     <%= f.file_field :invoice %></p>

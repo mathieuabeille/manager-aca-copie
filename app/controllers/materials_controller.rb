@@ -4,19 +4,16 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.json
   def index
-    @materials = Material.all
-    @search = params["search"]
-    if @search.present?
-      @name = @search["name"]
-      @materials = Material.where("name ILIKE ?", "%#{@name}%")
-    end
+    @materials = Material.search(params[:search])
+    @filter = Filter.new
   end
+
+
 
   # GET /materials/1
   # GET /materials/1.json
   def show
     @material_comment = MaterialComment.new
-
   end
 
   # GET /materials/new
@@ -78,6 +75,6 @@ class MaterialsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def material_params
-      params.require(:material).permit(:company, :materialType, :supplier, :name, :serial, :number, :location, :invoice)
+      params.require(:material).permit(:company,:brand, :materialtype, :supplier, :name, :brand, :serial, :number, :location, :invoice)
     end
   end

@@ -20,6 +20,7 @@ gem 'rmagick' # optional, for image resizing support
 gem 'carrierwave_direct'
 gem "figaro"
 gem "fog-aws"
+gem 'pg_search'
 
 
 
