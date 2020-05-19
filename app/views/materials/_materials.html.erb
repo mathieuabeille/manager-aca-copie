@@ -1,3 +1,15 @@
+<div class="tablehead">
+  <div class="fileimg"></div>
+  <div class="info">Nom</div>
+  <div class="info">Entite</div>
+  <div class="info">Type</div>
+  <div class="info">Fournisseur</div>
+  <div class="info">Marque</div>
+  <div class="info">Numero de serie</div>
+  <div class="info">Numero interne</div>
+  <div class="info">Emplacement</div>
+  <div class="info">Action</div>
+</div>
 <% @materials.each do |material| %>
 
 <div class="row document">
@@ -18,8 +30,8 @@
   <div class="info"><%= material.company %></div>
   <div class="info"><%= material.materialtype %></div>
   <div class="info"><%= material.supplier %></div>
-  <div class="info"><%= material.serial %></div>
   <div class="info"><%= material.brand %></div>
+  <div class="info"><%= material.serial %></div>
   <div class="info"><%= material.number %></div>
   <div class="info"><%= material.location %></div>
 
