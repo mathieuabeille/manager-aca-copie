@@ -11,6 +11,7 @@
   <div class="row">
     <div class="commentbox col-sm-4">
      <h3>Etiquette : </h3>
+     <div class="spacer"></div>
      <p>
       <strong>Entite:</strong>
       <%= @material.company %>
@@ -54,6 +55,7 @@
   <div class="spacer"></div>
   <div class="commentbox col-sm-4">
     <h3>Ajouter un commentaire : </h3>
+    <div class="spacer"></div>
     <%= simple_form_for [@material, @material_comment] do |f| %>
     <%= f.input :author, label: 'Auteur:' %>
     <%= f.input :comment, label: 'Message:' %>
@@ -64,14 +66,16 @@
   <div class="spacer"></div>
   <div class="col-sm-3">
     <% @material.material_comment.reverse_each do |review| %>
+
     <div class="card-product">
       <div class="card-product-infos">
-       <b><%= review.author %></b>
-       le <i><%= review.created_at  %>:</i>
-       <p> <h5><%= review.comment  %></h5>  </p>
+        <p><b><i class="fas fa-comment" style="color: #004B85; font-size: 20px;"></i></b></p>
+        <b>     <%= review.author %></b>
+         le <i><%= review.created_at  %>:</i>
+         <p> <h5><%= review.comment  %></h5>  </p>
+       </div>
      </div>
+     <% end %>
    </div>
-   <% end %>
  </div>
-</div>
 </div>
