@@ -1,72 +1,77 @@
 <div class="container-list">
 
+  <%= link_to 'Télécharger Facture', @material.invoice.url, class: "btn-flat btn"  %>
+  <%= link_to 'Générer Étiquette', @material.invoice.url, class: "btn-flat btn"  %>
+
   <% if current_user.superadmin_role? || current_user.supervisor_role? %>
   <%= link_to 'Modifier', edit_material_path(@material), class: "btn btn-flat" %>
   <% end %>
-  <div class="spacer"></div>
-
-  <p>
-    <strong>Entite:</strong>
-    <%= @material.company %>
-  </p>
-
-  <p>
-    <strong>Type:</strong>
-    <%= @material.materialtype %>
-  </p>
-
-  <p>
-    <strong>Fournisseur:</strong>
-    <%= @material.supplier %>
-  </p>
-
-  <p>
-    <strong>Marque:</strong>
-    <%= @material.brand %>
-  </p>
-  <p>
-    <strong>Nom:</strong>
-    <%= @material.name %>
-  </p>
-
-  <p>
-    <strong>Numero de Serie:</strong>
-    <%= @material.serial %>
-  </p>
-
-  <p>
-    <strong>Numero de materiel:</strong>
-    <%= @material.number %>
-  </p>
-
-  <p>
-    <strong>Emplacement:</strong>
-    <%= @material.location %>
-  </p>
-
-  <p>
-    <strong>Factures:</strong>
-          <%= link_to 'Télécharger', @material.invoice.url, class: "btn-flat-edit"  %>
-  </p>
-
   <%= link_to 'Retour', materials_path %>
   <div class="spacer"></div>
-  <h3>Ajouter un commentaire : </h3>
-  <%= simple_form_for [@material, @material_comment] do |f| %>
-  <%= f.input :author, label: 'Auteur:' %>
-  <%= f.input :comment, label: 'Message:' %>
-  <%= f.submit "Ajouter", class: "btn btn-flat"%>
-  <% end %>
-<div class="spacer"></div>
+  <div class="row">
+    <div class="commentbox col-sm-4">
+     <h3>Etiquette : </h3>
+     <p>
+      <strong>Entite:</strong>
+      <%= @material.company %>
+    </p>
 
-  <% @material.material_comment.reverse_each do |review| %>
-  <div class="card-product">
-    <div class="card-product-infos">
-     <b><%= review.author %></b>
-     le <i><%= review.created_at  %>:</i>
-     <p> <%= review.comment  %> </p>
+    <p>
+      <strong>Type:</strong>
+      <%= @material.materialtype %>
+    </p>
+
+    <p>
+      <strong>Fournisseur:</strong>
+      <%= @material.supplier %>
+    </p>
+
+    <p>
+      <strong>Marque:</strong>
+      <%= @material.brand %>
+    </p>
+    <p>
+      <strong>Nom:</strong>
+      <%= @material.name %>
+    </p>
+
+    <p>
+      <strong>Numero de Serie:</strong>
+      <%= @material.serial %>
+    </p>
+
+    <p>
+      <strong>Numero de materiel:</strong>
+      <%= @material.number %>
+    </p>
+
+    <p>
+      <strong>Emplacement:</strong>
+      <%= @material.location %>
+    </p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="commentbox col-sm-4">
+    <h3>Ajouter un commentaire : </h3>
+    <%= simple_form_for [@material, @material_comment] do |f| %>
+    <%= f.input :author, label: 'Auteur:' %>
+    <%= f.input :comment, label: 'Message:' %>
+    <%= f.submit "Ajouter", class: "btn btn-flat"%>
+    <% end %>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="col-sm-3">
+    <% @material.material_comment.reverse_each do |review| %>
+    <div class="card-product">
+      <div class="card-product-infos">
+       <b><%= review.author %></b>
+       le <i><%= review.created_at  %>:</i>
+       <p> <h5><%= review.comment  %></h5>  </p>
+     </div>
    </div>
+   <% end %>
  </div>
-
- <% end %>
+</div>
 </div>

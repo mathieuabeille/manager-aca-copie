@@ -192,6 +192,8 @@ td:hover{
   height: 120px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-top: 20px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
 }
@@ -232,4 +234,11 @@ td:hover{
   padding: 10px;
   color: #495057;
   font-size: 16px;
+}
+
+.commentbox{
+  border : solid;
+  border-color: #f4f4f4;
+  border-width: 1px;
+  padding: 50px;
 }
