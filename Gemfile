@@ -21,7 +21,9 @@ gem 'carrierwave_direct'
 gem "figaro"
 gem "fog-aws"
 gem 'pg_search'
+gem 'wicked_pdf', github: 'mileszs/wicked_pdf'
 
+gem "wkhtmltopdf-binary"
 
 
 

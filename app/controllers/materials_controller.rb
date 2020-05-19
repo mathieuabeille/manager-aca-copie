@@ -14,6 +14,12 @@ class MaterialsController < ApplicationController
   # GET /materials/1.json
   def show
     @material_comment = MaterialComment.new
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render  pdf: 'etiquette.pdf', template: 'materials/show.html.erb'
+      end # Excluding ".pdf" extension.
+    end
   end
 
   # GET /materials/new

@@ -1,7 +1,7 @@
 <div class="container-list">
 
   <%= link_to 'Télécharger Facture', @material.invoice.url, class: "btn-flat btn"  %>
-  <%= link_to 'Générer Étiquette', @material.invoice.url, class: "btn-flat btn"  %>
+  <%= link_to 'Générer Étiquette', material_path(format: :pdf), class: "btn-flat btn"  %>
 
   <% if current_user.superadmin_role? || current_user.supervisor_role? %>
   <%= link_to 'Modifier', edit_material_path(@material), class: "btn btn-flat" %>
