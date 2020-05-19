@@ -14,16 +14,19 @@
  </div>
  <div>
    <%= form_for @filter, html: {class: "filters"}  do |f| %>
-   <%= f.select :brand, options_from_collection_for_select(Material.all, :brand, :brand), {include_blank: "Marques"},{ class: 'custom-select'}  %>
-   <%= f.select :materialtype, options_from_collection_for_select(Material.all, :materialtype, :materialtype), {include_blank: "Type"},{ class: 'custom-select'}  %>
-   <%= f.select :company, options_from_collection_for_select(Material.all, :company, :company), {include_blank: "Entite"},{ class: 'custom-select'}  %>
-   <%= f.select :supplier, options_from_collection_for_select(Material.all, :supplier, :supplier), {include_blank: "Fournisseur"},{ class: 'custom-select'}  %>
-   <%= f.select :location, options_from_collection_for_select(Material.all, :location, :location), {include_blank: "Emplacement"},{ class: 'custom-select'}  %>
+   <%= f.select :brand, Material.pluck(:brand).uniq, {include_blank: "Marques"},{ class: 'custom-select'}  %>
+   <%= f.select :materialtype, Material.pluck(:materialtype).uniq, {include_blank: "Type"},{ class: 'custom-select'}  %>
+   <%= f.select :company, Material.pluck(:company).uniq, {include_blank: "Entite"},{ class: 'custom-select'}  %>
+   <%= f.select :supplier, Material.pluck(:supplier).uniq, {include_blank: "Fournisseur"},{ class: 'custom-select'}  %>
+   <%= f.select :location, Material.pluck(:location).uniq, {include_blank: "Emplacement"},{ class: 'custom-select'}  %>
    <%= f.submit "Filtrer", class: 'btn btn-flat' %>
    <% end %>
    <%= link_to 'Annuler', materials_path, class: 'btn btn-flat-edit' %>
  </div>
 </div>
+
+
+
 
 
   <div class="spacer"></div>
