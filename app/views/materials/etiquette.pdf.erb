@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+  <%= wicked_pdf_javascript_include_tag "number_pages" %>
+</head>
+<body onload='number_pages'>
+  <div id="header">
+  </div>
+  <div id="content">
+    <div class="row">
+      <table>
+        <tr>
+          <td>
+            <strong>Nom:</strong>
+            <%= @material.name %>
+
+          </td>
+          <td>
+            <strong>Type:</strong>
+            <%= @material.materialtype %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Emplacement:</strong>
+            <%= @material.location %></td>
+            <td>
+             <strong>Numero de materiel:</strong>
+             <%= @material.number %>
+           </td>
+         </tr>
+         <tr>
+          <td>
+            <strong>Type:</strong>
+            <%= @material.materialtype %></td>
+            <td>
+              <strong>Entite:</strong>
+              <%= @material.company %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Numero de Serie:</strong>
+              <%= @material.serial %>
+            </td>
+            <td>
+              <strong>Fournisseur:</strong>
+              <%= @material.supplier %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+  </html>

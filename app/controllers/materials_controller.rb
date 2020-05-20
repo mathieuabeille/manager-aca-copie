@@ -17,7 +17,7 @@ class MaterialsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render  pdf: 'etiquette.pdf', template: 'materials/show.html.erb'
+        render  pdf: 'etiquette', template: 'materials/etiquette'
       end # Excluding ".pdf" extension.
     end
   end
