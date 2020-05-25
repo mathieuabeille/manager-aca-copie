@@ -1,0 +1,2 @@
+class Invoiceline < ApplicationRecord
+end

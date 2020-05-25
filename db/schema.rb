@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_144947) do
+ActiveRecord::Schema.define(version: 2020_05_25_121028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "phone"
+    t.string "leader"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "documents", force: :cascade do |t|
     t.string "name"
@@ -39,6 +49,33 @@ ActiveRecord::Schema.define(version: 2020_05_19_144947) do
     t.string "name"
     t.integer "order"
     t.boolean "managerAccess"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "invoicelines", force: :cascade do |t|
+    t.string "name"
+    t.string "price"
+    t.string "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string "author"
+    t.string "status"
+    t.string "invoicetype"
+    t.string "name"
+    t.integer "vat"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name"
+    t.string "labeltype"
+    t.text "description"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

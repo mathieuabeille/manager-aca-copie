@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :labels
+  resources :invoicelines
+  resources :clients
+  resources :invoices
   resources :materials do
     resources :material_comments
   end

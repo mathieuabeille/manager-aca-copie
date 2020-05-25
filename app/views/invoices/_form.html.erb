@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@invoice) do |f| %>
+<%= f.error_notification %>
+<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+<div class="form-inputs">
+  <%= f.input :name, label: "Nom du devis"  %>
+  <%= f.input :author, label: "Auteur du devis" %>
+  <%= f.input :status, collection:["Créé", "Soumis", "Payé"], label: "Status du devis", prompt: "Créé" %>
+  <%= f.input :invoicetype, label: "Type du devis" %>
+</div>
+
+<div class="form-actions">
+  <%= f.button :submit, "Soumettre", class: "btn btn-flat" %>
+</div>
+<% end %>

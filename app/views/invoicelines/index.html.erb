@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Invoicelines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoicelines.each do |invoiceline| %>
+      <tr>
+        <td><%= invoiceline.name %></td>
+        <td><%= invoiceline.price %></td>
+        <td><%= invoiceline.quantity %></td>
+        <td><%= link_to 'Show', invoiceline %></td>
+        <td><%= link_to 'Edit', edit_invoiceline_path(invoiceline) %></td>
+        <td><%= link_to 'Destroy', invoiceline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Invoiceline', new_invoiceline_path %>
