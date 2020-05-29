@@ -5,6 +5,8 @@ class LabelsController < ApplicationController
   # GET /labels.json
   def index
     @labels = Label.all
+    @labels = @labels.page(params[:page] || 1)
+
   end
 
   # GET /labels/1
@@ -71,4 +73,4 @@ class LabelsController < ApplicationController
     def label_params
       params.require(:label).permit(:name, :labeltype, :description, :price)
     end
-end
+  end
