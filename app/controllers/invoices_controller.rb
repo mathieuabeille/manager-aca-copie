@@ -1,15 +1,45 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 
+
+  def conversation_count
+
+  end
+
+
+
   # GET /invoices
   # GET /invoices.json
   def index
     @invoices = Invoice.all
+    @clients = Client.order(:name)
+    @clients = @clients.where("name like ?", "%#{params[:term]}%") if params[:term]
+    respond_to do |format|
+    format.html  # index.html.erb
+    format.json  { render :json => @clients.map(&:name) }
   end
+end
 
   # GET /invoices/1
   # GET /invoices/1.json
   def show
+    @invoiceline = Invoiceline.new
+    @invoices = Invoice.all
+    @invoicelines = Invoiceline.all
+    @sum = 0
+    @total = @invoicelines.where(:invoice_id => @invoice.id).each do |invoicelin|
+      @invoicelin = invoicelin
+      if invoicelin.price.present?
+        price =   invoicelin.price.to_i
+      elsif invoicelin.label.present?
+        price =  invoicelin.label.price.to_i
+      else
+        price = 0
+      end
+      quantity = invoicelin.quantity.to_i
+      @sum+= quantity*price
+      @sumttc= @sum*1.20
+    end
   end
 
   # GET /invoices/new
@@ -28,7 +58,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to invoices_path, notice: 'Devis cree.' }
+        format.html { redirect_to @invoice, notice: 'Devis cree.' }
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new }
@@ -42,7 +72,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to invoices_path, notice: 'Devis modifie.' }
+        format.html { redirect_to @invoice, notice: 'Devis modifie.' }
         format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit }
@@ -69,6 +99,6 @@ class InvoicesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invoice_params
-      params.require(:invoice).permit(:author, :status, :invoicetype, :name)
+      params.require(:invoice).permit(:author, :status, :invoicetype, :name, :client_id)
     end
-end
+  end

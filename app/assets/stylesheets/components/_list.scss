@@ -153,6 +153,14 @@
   border-width: 1px;
 }
 
+.document-1 {
+  display: table;
+  vertical-align: middle;
+  padding: 10px;
+  width: 100%;
+  margin: auto;
+}
+
 tr {
   display: table;
   vertical-align: middle;
@@ -242,4 +250,16 @@ td:hover{
   border-color: #f4f4f4;
   border-width: 1px;
   padding: 50px;
+}
+
+.table-invoice{
+
+  border : solid;
+  border-color: #f4f4f4;
+  border-width: 1px;
+}
+.table-invoice-line{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }

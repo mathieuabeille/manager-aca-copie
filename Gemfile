@@ -15,6 +15,11 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'kaminari'
+gem 'jquery-rails'
+gem 'popper_js'
+
+
 gem 'cancancan'
 gem 'rmagick' # optional, for image resizing support
 gem 'carrierwave_direct'
@@ -24,6 +29,9 @@ gem 'pg_search'
 gem 'wicked_pdf', github: 'mileszs/wicked_pdf'
 
 gem "wkhtmltopdf-binary"
+
+
+gem 'yajl-ruby', require: 'yajl'
 
 
 
@@ -39,4 +47,10 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
+end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+  # add the line below
+  gem 'rails-assets-chosen'
 end

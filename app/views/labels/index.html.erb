@@ -51,8 +51,7 @@
       <div class="info col-2"><%= label.description %></div>
       <div class="info col-2"><%= label.price %></div>
       <div class="info col-2">
-        <%= link_to 'Voir', label, class: "btn-flat-edit" %>
-        <%= link_to 'Modifier', edit_label_path(label), class: "btn-flat-edit" %>
+          <%= link_to 'Modifier', edit_label_path(label), class: "btn-flat-edit" %>
         <%= link_to 'Supprimer', label, method: :delete, data: { confirm: 'Etes vous certain?' }, class: "btn-flat-edit" %>
       </div>
     </div>

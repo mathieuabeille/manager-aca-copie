@@ -4,8 +4,12 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
-  end
+    @clients = Client.search(params[:search])
+    @clients = @clients.page(params[:page] || 1)
+
+end
+
+
 
   # GET /clients/1
   # GET /clients/1.json
@@ -71,4 +75,4 @@ class ClientsController < ApplicationController
     def client_params
       params.require(:client).permit(:name, :address, :phone, :leader, :email)
     end
-end
+  end

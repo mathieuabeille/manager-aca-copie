@@ -10,6 +10,7 @@ class InvoicelinesController < ApplicationController
   # GET /invoicelines/1
   # GET /invoicelines/1.json
   def show
+
   end
 
   # GET /invoicelines/new
@@ -19,16 +20,18 @@ class InvoicelinesController < ApplicationController
 
   # GET /invoicelines/1/edit
   def edit
+
   end
 
   # POST /invoicelines
   # POST /invoicelines.json
   def create
     @invoiceline = Invoiceline.new(invoiceline_params)
+    @invoiceline.invoice = Invoice.find(params[:invoice_id])
 
     respond_to do |format|
       if @invoiceline.save
-        format.html { redirect_to @invoiceline, notice: 'Invoiceline was successfully created.' }
+        format.html { redirect_to invoice_path(@invoiceline.invoice), notice: 'Ligne créé.' }
         format.json { render :show, status: :created, location: @invoiceline }
       else
         format.html { render :new }
@@ -40,9 +43,10 @@ class InvoicelinesController < ApplicationController
   # PATCH/PUT /invoicelines/1
   # PATCH/PUT /invoicelines/1.json
   def update
+
     respond_to do |format|
       if @invoiceline.update(invoiceline_params)
-        format.html { redirect_to @invoiceline, notice: 'Invoiceline was successfully updated.' }
+        format.html { redirect_to invoice_path(@invoiceline.invoice), notice: 'Ligne modifiée.' }
         format.json { render :show, status: :ok, location: @invoiceline }
       else
         format.html { render :edit }
@@ -56,7 +60,7 @@ class InvoicelinesController < ApplicationController
   def destroy
     @invoiceline.destroy
     respond_to do |format|
-      format.html { redirect_to invoicelines_url, notice: 'Invoiceline was successfully destroyed.' }
+      format.html { redirect_to invoice_path(@invoiceline.invoice), notice: 'Ligne supprimée.' }
       format.json { head :no_content }
     end
   end
@@ -67,8 +71,10 @@ class InvoicelinesController < ApplicationController
       @invoiceline = Invoiceline.find(params[:id])
     end
 
+
+
     # Only allow a list of trusted parameters through.
     def invoiceline_params
-      params.require(:invoiceline).permit(:name, :price, :quantity)
+      params.require(:invoiceline).permit(:name, :price, :quantity, :invoice_id, :label_id)
     end
-end
+  end

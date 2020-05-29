@@ -6,8 +6,11 @@
 <div class="form-inputs">
   <%= f.input :name, label: "Nom du devis"  %>
   <%= f.input :author, label: "Auteur du devis" %>
+  <%= f.association :client,  as: :select, collection: Client.order(:name), label_method: :name, label: "Nom du client", input_html: {multiple: true} %>
+  <p>  <%= link_to 'Ajouter un client', new_client_path, class: 'btn-flat-edit btn' %>
+  </p>
   <%= f.input :status, collection:["Créé", "Soumis", "Payé"], label: "Status du devis", prompt: "Créé" %>
-  <%= f.input :invoicetype, label: "Type du devis" %>
+  <%= f.input :invoicetype, collection:[ "Social", "Juridique"], prompt: "Comptabilité", label: "Type du devis" %>
 </div>
 
 <div class="form-actions">

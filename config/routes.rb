@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'findclients/:client', to: 'invoices#index', as: :findclient
   resources :labels
-  resources :invoicelines
   resources :clients
-  resources :invoices
+  resources :invoices do
+    resources :invoicelines
+  end
   resources :materials do
     resources :material_comments
   end
@@ -14,3 +16,5 @@ Rails.application.routes.draw do
   root to: 'folders#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
+

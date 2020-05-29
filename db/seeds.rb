@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
+
+CSV.foreach(Rails.root.join('lib/client.csv'), headers: false) do |row|
+
+  Client.create({
+    name: row[0],
+    leader: row[1]
+  })
+end
+
+
+CSV.foreach(Rails.root.join('lib/mission.csv'), headers: false) do |row|
+
+  Label.create({
+    name: row[0],
+    description: row[1],
+    labeltype: row[2],
+    price: row[3]
+  })
+end

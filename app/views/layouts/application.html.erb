@@ -6,6 +6,7 @@
   <title>Dossier Jaune - Aca-Consult</title>
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
+
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
 </head>
@@ -18,5 +19,13 @@
   <%= yield %>
 
   <%= javascript_pack_tag 'application' %>
+  <script>
+  $(document).on('ready page:load', function () {
+    $('#post_tag_ids').chosen({
+      allow_single_deselect: true,
+      width: '100%'
+    })
+  });
+</script>
 </body>
 </html>
