@@ -1,10 +1,71 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :edit,:preview, :update, :destroy]
+  before_action :set_invoice, only: [:show, :edit,:preview, :update, :destroy, :create_payment, :new_payment]
   before_action :authenticate_user!, :except => [:preview]
 
 
+  def create_payment
 
-  def conversation_count
+    @invoiceline = Invoiceline.new
+    @invoices = Invoice.all
+    @invoicelines = Invoiceline.all
+    @sum = 0
+    @total = @invoicelines.where(:invoice_id => @invoice.id).each do |invoicelin|
+      @invoicelin = invoicelin
+      if invoicelin.price.present?
+        price =   invoicelin.price.to_i
+      elsif invoicelin.label.present?
+        price =  invoicelin.label.price.to_i
+      else
+        price = 0
+      end
+      quantity = invoicelin.quantity.to_i
+      @sum+= quantity*price
+      @sumttc= @sum*1.20
+    end
+    @amount = @sumttc
+
+    customer = Stripe::Customer.create({
+      email: params[:stripeEmail],
+      source: params[:stripeToken],
+    })
+
+    charge = Stripe::Charge.create({
+      customer: customer.id,
+      amount: @amount,
+      description: 'Rails Stripe customer',
+      currency: 'usd',
+    })
+
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to @invoice
+
+  end
+
+
+  def new_payment
+
+    @invoiceline = Invoiceline.new
+    @invoices = Invoice.all
+    @invoicelines = Invoiceline.all
+    @sum = 0
+    @total = @invoicelines.where(:invoice_id => @invoice.id).each do |invoicelin|
+      @invoicelin = invoicelin
+      if invoicelin.price.present?
+        price =   invoicelin.price.to_i
+      elsif invoicelin.label.present?
+        price =  invoicelin.label.price.to_i
+      else
+        price = 0
+      end
+      quantity = invoicelin.quantity.to_i
+      @sum+= quantity*price
+      @sumttc= @sum*1.20
+    end
+    @amount2 = @sumttc
+
+    @amount = @sumttc*100
+
 
   end
 
@@ -42,6 +103,7 @@ end
       @sum+= quantity*price
       @sumttc= @sum*1.20
     end
+
   end
 
   def preview
@@ -76,6 +138,7 @@ end
   def new
     @invoice = Invoice.new
   end
+
 
   # GET /invoices/1/edit
   def edit

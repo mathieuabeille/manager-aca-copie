@@ -280,6 +280,10 @@ td:hover{
 .cta:hover{
  opacity: 1;
  transition: 0.6s;
+    a{
+    text-decoration: none;
+    color: #fff;
+   }
 }
 
 .logoinvoice{

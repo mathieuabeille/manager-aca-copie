@@ -30,7 +30,7 @@ gem 'wicked_pdf', github: 'mileszs/wicked_pdf'
 
 gem "wkhtmltopdf-binary"
 
-
+gem 'stripe'
 gem 'yajl-ruby', require: 'yajl'
 
 

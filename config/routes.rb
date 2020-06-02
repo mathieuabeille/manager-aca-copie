@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'findclients/:client', to: 'invoices#index', as: :findclient
+  resources :charges
+
   get    "invoices/preview/:id",      to: "invoices#preview", as: :preview
+  get    "invoices/create_payment/:id",      to: "invoices#create_payment", as: :create_payment
+  get    "invoices/new_payment/:id",      to: "invoices#new_payment", as: :new_payment
+
   resources :labels
   resources :clients
   resources :invoices do
