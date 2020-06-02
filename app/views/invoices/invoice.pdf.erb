@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track':
+  'reload' %>
+  <%= wicked_pdf_stylesheet_link_tag "styles" %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <%= wicked_pdf_javascript_include_tag "number_pages" %>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+</head>
+<body onload='number_pages'>
+  <div id="header">
+  </div>
+  <div id="content">
+
+    <style media="screen" type="text/css">
+      p{
+        font-family: 'Open Sans', sans-serif;
+      }
+      .table-invoice{
+
+        border : solid;
+        border-color: #f4f4f4;
+        border-width: 1px;
+      }
+      .table-invoice-line{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+      }
+      .table-invoice-line{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+      }
+
+      table,
+      table{
+        font-family: 'Open Sans', sans-serif;
+        width: 900px;
+      }
+      td {
+        border: 1px solid #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: right;
+      }
+
+      th  {
+        border-radius: 5px;
+        padding: 10px;
+
+      }
+
+      thead,
+      tfoot {
+        background-color: #004A85;
+        color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+
+    </style>
+
+
+
+
+
+    <div class="row">
+      <div class="navbar">
+
+        <div>
+          <%= wicked_pdf_image_tag 'logo.jpg'  %>
+          <div style="padding-left: 600px;">
+            <b><h3><p><%= @invoice.client.name  %></p></h3></b>
+            <p><%= @invoice.client.leader %>,</p>
+            <p>          <%= @invoice.client.address %></p>
+            <p>le  <%= @invoice.created_at.strftime("%F") %> </p>
+          </div>
+          <div style="height: 30px;"></div>
+
+          <div style="text-align: center; color: #004A85"><p>   <h2>  <b>Devis: </b>  <%= @invoice.name if @invoice.name.present?  %></p></h2>
+          </div>
+        </div>
+
+        <div style="height: 30px;"></div>
+
+        <table>
+          <div>
+            <thead>
+              <tr>
+                <th>Libellés</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+              </tr>
+            </thead>
+          </div>
+          <tbody>
+           <% @invoice.invoicelines.each do |invoiceline| %>
+           <tr>
+            <td>
+              <b>           <% if invoiceline.name.present? %>
+               <%= invoiceline.name %>
+               <% else %>
+               <%= invoiceline.label.name %>
+               <% end %></b>
+               <p>   <% if invoiceline.name.present? %>
+                 <% else %>
+                 <%= invoiceline.label.description %>
+                 <% end %></b></p>
+
+               </td>
+               <td><%= invoiceline.quantity%></td>
+               <td>
+                 <% if invoiceline.price.present? %>
+                 <%= invoiceline.price %> €
+                 <% elsif invoiceline.label.present? && invoiceline.label.price != nil %>
+                 <%= invoiceline.label.price %> €
+                 <% elsif invoiceline.label.price == nil && invoiceline.label.price == 0 %>
+                 Probleme devis
+                 <% else %>
+                 Probleme devis
+                 <% end %>
+               </td>
+             </tr>
+             <% end %>
+           </tbody>
+         </table>
+         <table>
+          <thead>
+            <tr>
+              <th colspan="3">Montant du devis</th>
+
+            </tr>
+          </thead>
+          <tbody>
+           <tr>
+            <td colspan="2">HT:</td>
+            <td colspan="1"><b>   <%= @sum %> €</b></td>
+          </tr>
+          <tr>
+            <td colspan="2">TTC:</td>
+            <td colspan="1"><b> <%= @sumttc %> €</b></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="height: 100px;"></div>
+      <div style="padding-left: 600px;"><p><b><h3><%= @invoice.author %></h3></b></p></div>
+      <div style="height: 30px;"></div>
+
+      <div style="padding-left: 600px;"><p><b><h3>Signature</h3></b></p></div>
+
+
+
+    </div>
+  </div>
+</body>
+</html>

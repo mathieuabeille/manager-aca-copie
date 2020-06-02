@@ -1,5 +1,7 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_invoice, only: [:show, :edit,:preview, :update, :destroy]
+  before_action :authenticate_user!, :except => [:preview]
+
 
 
   def conversation_count
@@ -39,6 +41,34 @@ end
       quantity = invoicelin.quantity.to_i
       @sum+= quantity*price
       @sumttc= @sum*1.20
+    end
+  end
+
+  def preview
+    @invoiceline = Invoiceline.new
+    @invoices = Invoice.all
+    @invoicelines = Invoiceline.all
+    @sum = 0
+    @total = @invoicelines.where(:invoice_id => @invoice.id).each do |invoicelin|
+      @invoicelin = invoicelin
+      if invoicelin.price.present?
+        price =   invoicelin.price.to_i
+      elsif invoicelin.label.present?
+        price =  invoicelin.label.price.to_i
+      else
+        price = 0
+      end
+      quantity = invoicelin.quantity.to_i
+      @sum+= quantity*price
+      @sumttc= @sum*1.20
+    end
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render  pdf: 'invoice', template: 'invoices/invoice',
+        page_size: 'A4',
+        encoding:"UTF-8"
+      end # Excluding ".pdf" extension.
     end
   end
 

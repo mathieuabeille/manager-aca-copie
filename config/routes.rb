@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'findclients/:client', to: 'invoices#index', as: :findclient
+  get    "invoices/preview/:id",      to: "invoices#preview", as: :preview
   resources :labels
   resources :clients
   resources :invoices do

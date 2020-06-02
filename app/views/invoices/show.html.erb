@@ -1,8 +1,15 @@
 <div class="container-list">
 
-  <%= link_to 'Envoyer le devis', invoice_path(@invoice, format: 'pdf'), class: "btn-flat btn"  %>
+  <%= link_to 'Voir la facture', preview_path(@invoice), class: "btn-flat btn"  %>
+  <%= link_to 'Télécharger au format PDF', preview_path(@invoice, format: 'pdf'), class: "btn-flat btn"  %>
+
   <%= link_to 'Modifier', edit_invoice_path(@invoice), class: "btn btn-flat" %>
   <%= link_to 'Retour', invoices_path %>
+  <div>
+    Lien du devis à envoyer au client: <input type="text" value="http://aca-manager.herokuapp.com/invoices/preview/<%= @invoice.id %>" id="myInput" style="width: 500px;">
+
+    <!-- The button used to copy the text -->
+  </div>
   <div class="spacer"></div>
   <div class="row">
     <div class="commentbox col-sm-3">
@@ -78,7 +85,7 @@
           <%= invoiceline.label.price %>
           <% elsif invoiceline.label.price == nil && invoiceline.label.price == 0 %>
           Saisir un tarif
-           <% else %>
+          <% else %>
           Saisir un tarif
           <% end %>
         </div>
