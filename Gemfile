@@ -18,7 +18,7 @@ gem 'webpacker'
 gem 'kaminari'
 gem 'jquery-rails'
 gem 'popper_js'
-
+gem 'actionmailer'
 
 gem 'cancancan'
 gem 'rmagick' # optional, for image resizing support

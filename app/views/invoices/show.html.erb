@@ -6,6 +6,7 @@
   <%= link_to 'Modifier', edit_invoice_path(@invoice), class: "btn btn-flat" %>
   <%= link_to 'Retour', invoices_path %>
   <div>
+    <div style="padding-top: 20px;"></div>
     Lien du devis à envoyer au client: <input type="text" value="http://aca-manager.herokuapp.com/invoices/preview/<%= @invoice.id %>" id="myInput" style="width: 500px;">
 
     <!-- The button used to copy the text -->

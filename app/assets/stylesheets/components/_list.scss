@@ -273,7 +273,11 @@ td:hover{
   width: 100%;
   border-radius: 5px;
   text-align: center;
-   opacity: 0.9;
+  opacity:0.9;
+    a{
+    text-decoration: none;
+    color: #fff;
+   }
 
 }
 

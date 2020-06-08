@@ -3,72 +3,6 @@ class InvoicesController < ApplicationController
   before_action :authenticate_user!, :except => [:preview]
 
 
-  def create_payment
-
-    @invoiceline = Invoiceline.new
-    @invoices = Invoice.all
-    @invoicelines = Invoiceline.all
-    @sum = 0
-    @total = @invoicelines.where(:invoice_id => @invoice.id).each do |invoicelin|
-      @invoicelin = invoicelin
-      if invoicelin.price.present?
-        price =   invoicelin.price.to_i
-      elsif invoicelin.label.present?
-        price =  invoicelin.label.price.to_i
-      else
-        price = 0
-      end
-      quantity = invoicelin.quantity.to_i
-      @sum+= quantity*price
-      @sumttc= @sum*1.20
-    end
-    @amount = @sumttc
-
-    customer = Stripe::Customer.create({
-      email: params[:stripeEmail],
-      source: params[:stripeToken],
-    })
-
-    charge = Stripe::Charge.create({
-      customer: customer.id,
-      amount: @amount,
-      description: 'Rails Stripe customer',
-      currency: 'usd',
-    })
-
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to @invoice
-
-  end
-
-
-  def new_payment
-
-    @invoiceline = Invoiceline.new
-    @invoices = Invoice.all
-    @invoicelines = Invoiceline.all
-    @sum = 0
-    @total = @invoicelines.where(:invoice_id => @invoice.id).each do |invoicelin|
-      @invoicelin = invoicelin
-      if invoicelin.price.present?
-        price =   invoicelin.price.to_i
-      elsif invoicelin.label.present?
-        price =  invoicelin.label.price.to_i
-      else
-        price = 0
-      end
-      quantity = invoicelin.quantity.to_i
-      @sum+= quantity*price
-      @sumttc= @sum*1.20
-    end
-    @amount2 = @sumttc
-
-    @amount = @sumttc*100
-
-
-  end
-
 
 
   # GET /invoices
@@ -132,6 +66,8 @@ end
         encoding:"UTF-8"
       end # Excluding ".pdf" extension.
     end
+    @amount2 = @sumttc
+    @amount = @sumttc*100
   end
 
   # GET /invoices/new

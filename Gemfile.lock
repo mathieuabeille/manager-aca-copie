@@ -288,6 +288,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer
   autoprefixer-rails
   bootsnap
   cancancan

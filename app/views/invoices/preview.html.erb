@@ -89,16 +89,43 @@
         <div class="table-invoice">
           <div class="table-invoice-line">
             <div class="col-1"><b>Total TTC:</b></div>
-            <div class="col-2"><%= @sumttc %> €</div>
+            <div class="col-2"><%= @sumttc %> €
+              <% if @invoice.status === "paiement effectué" %>
+              Devis payé
+              <% else %>
 
+              <%= form_tag charges_path do %>
+              <input type="hidden" name="invoice_id" value='<%= @invoice.id %>'>
+
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button cta"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Payer le devis"
+              data-amount="<%= @amount.to_i %>"
+              data-locale="auto" data-currency="eur" data-label="Payer le devis">
+
+            </script>
+
+
+            <% end %>
+            <% end %>
           </div>
+
         </div>
-
-
-          <%= link_to 'Payer le devis', new_payment_path(@invoice), class: "cta"  %>
-
-
-
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   </div>
+</div>

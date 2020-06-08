@@ -9,7 +9,7 @@
   <%= f.association :client,  as: :select, label: "Nom du client" %>
   <p>  <%= link_to 'Ajouter un client', new_client_path, class: 'btn-flat-edit btn' %>
   </p>
-  <%= f.input :status, collection:["Créé", "Soumis", "Payé"], label: "Status du devis", prompt: "Créé" %>
+  <%= f.input :status, collection:["Créé", "Soumis", "paiement effectué"], label: "Status du devis", default: "Créé" %>
   <%= f.input :invoicetype, collection:[ "Social", "Juridique"], prompt: "Comptabilité", label: "Type du devis" %>
 </div>
 
