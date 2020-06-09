@@ -6,6 +6,7 @@
 <div class="form-inputs">
   <%= f.input :name, label: "Nom du devis"  %>
   <%= f.input :author, label: "Auteur du devis" %>
+  <%= f.input :email, label: "Email de l'auteur du devis" %>
   <%= f.association :client,  as: :select, label: "Nom du client" %>
   <p>  <%= link_to 'Ajouter un client', new_client_path, class: 'btn-flat-edit btn' %>
   </p>

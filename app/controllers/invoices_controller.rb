@@ -128,6 +128,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def invoice_params
-      params.require(:invoice).permit(:author, :status, :invoicetype, :name, :client_id)
+      params.require(:invoice).permit(:author, :status, :invoicetype, :name, :email,:client_id)
     end
   end
