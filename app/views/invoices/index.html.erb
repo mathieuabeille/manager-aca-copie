@@ -17,6 +17,12 @@
           <%= link_to 'Liste des libellés', labels_path, class: 'nav-link' %>
         </li>
       </ul>
+      <span class="navbar-text" style="padding-right: 10px;">
+        <%= form_tag invoices_path, method: 'get' do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Recherche", class: 'btn btn-flat' %>
+        <% end %>
+      </span>
       <span class="navbar-text">
         <%= link_to 'Nouveau devis', new_invoice_path, class: 'btn btn-flat', style: "color: #f4f4f4;" %>
       </span>
@@ -58,6 +64,8 @@
     </div>
     <% end %>
   </div>
+  <%= paginate @invoices %>
+
 </div>
 
 

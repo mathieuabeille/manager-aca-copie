@@ -8,9 +8,9 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
-    @clients = Client.order(:name)
-    @clients = @clients.where("name like ?", "%#{params[:term]}%") if params[:term]
+    @invoices = Invoice.search(params[:search])
+    @Invoices = Invoice.order(:name)
+    @invoices = @invoices.page(params[:page] || 1)
     respond_to do |format|
     format.html  # index.html.erb
     format.json  { render :json => @clients.map(&:name) }

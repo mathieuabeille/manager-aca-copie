@@ -4,7 +4,7 @@ class LabelsController < ApplicationController
   # GET /labels
   # GET /labels.json
   def index
-    @labels = Label.all
+    @labels = Label.search(params[:search])
     @labels = @labels.page(params[:page] || 1)
 
   end

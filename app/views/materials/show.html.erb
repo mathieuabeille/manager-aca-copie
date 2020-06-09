@@ -61,13 +61,14 @@
     <%= f.input :comment, label: 'Message:' %>
     <%= f.submit "Ajouter", class: "btn btn-flat"%>
     <% end %>
-    <% @material.material_comment.reverse_each do |review| %>
 
 
   </div>
 
   <div class="spacer"></div>
   <div class="col-sm-3">
+    <% @material.material_comment.reverse_each do |review| %>
+
     <div class="card-product">
       <div class="card-product-infos">
         <p><b><i class="fas fa-comment" style="color: #004B85; font-size: 20px;"></i></b></p>
@@ -76,6 +77,7 @@
         <p> <h5><%= review.comment  %></h5>  </p>
       </div>
     </div>
+
     <% end %>
   </div>
 </div>
