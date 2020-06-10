@@ -52,7 +52,6 @@ class ChargesController < ApplicationController
       currency: 'eur'
     })
 
-    InvoiceMailer.with(@invoiceobject).new_invoice_email.deliver_later
 
 
   rescue Stripe::CardError => e
