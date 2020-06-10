@@ -1,4 +1,4 @@
-<p>Votre devis <%= @invoice.name %> a ete payée pour <%= @invoice.client.name %></p>
+<p>Votre devis <%= @invoice.name %> a ete payée pour <%= @client.id %></p>
 <p>===============================================</p>
 <p>Allez verifier dans stripe que le virement ait bien reussie. Le numero de facture est: <%= @invoice.id %>
 </p>
