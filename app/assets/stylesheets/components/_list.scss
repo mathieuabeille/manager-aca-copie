@@ -1,9 +1,56 @@
+
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  background-color: #F4f4f4;
+  border-bottom: solid 1px;
+  border-right: solid 1px;
+  border-color: #D2DAE6;
+  margin-left: 75px;
+  min-width: 400px;
+  width: 30vw;
+}
+
+.material{
+  display: flex;
+  flex-direction: row;
+  background-color: #F4f4f4;
+}
+
+.header{
+  height: 30vh;
+    margin-left: 75px;
+    background-color: #F7F9FC;
+    display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 30px;
+  border-bottom: solid 1px;
+  border-color: #D2DAE6;
+  h1{
+    font-size:32px;
+  }
+  h2{
+    font-size: 18px;
+  }
+}
+
 .container-list {
   background-color: #fff;
   padding: 40px;
   min-height: 90vh;
+    margin-left: 75px; /* Same as the width of the sidenav */
+
 }
 
+.container-material {
+  background-color: #fff;
+  padding: 40px;
+  min-height: 90vh;
+  width: 100%;
+
+}
 .container-log {
   background-color: #fff;
   width: 50vw;
@@ -25,6 +72,7 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  margin-left: 75px;
 }
 
 @media (max-width : 520px) {
@@ -36,6 +84,7 @@
     display: flex;
     justify-content: space-around;
     flex-direction: column;
+    margin-left: 75px;
   }
 }
 
@@ -230,10 +279,7 @@ td:hover{
   padding: 16px;
 }
 
-.filters {
-  display: flex;
-  justify-content: space-around;
-}
+
 .tablehead {
   font-weight: bold;
   border: solid;
@@ -293,4 +339,49 @@ td:hover{
 .logoinvoice{
  height: 150px;
  padding: 20px;
+}
+@media (max-width: 640px) {
+.container-list {
+  background-color: #fff;
+    margin-left: 40px;
+      padding: 20px;
+ /* Same as the width of the sidenav */
+}
+
+
+.header{
+  height: 30vh;
+    margin-left: 40px;
+    background-color: #F7F9FC;
+    display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 30px;
+  border-bottom: solid 1px;
+  border-color: #D2DAE6;
+  h1{
+    font-size:18px;
+  }
+  h2{
+    font-size: 14px;
+  }
+}
+.material{
+       display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.filter{
+  width: 100%;
+  border-color: #D2DAE6;
+  border-right: solid 1px;
+  border-color: #D2DAE6;
+    display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 70vh;
+  margin-left: 75px;
+}
+
 }

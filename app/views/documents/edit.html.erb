@@ -1,5 +1,20 @@
-<div class="container-form">
+<div class="header">
+  <h2>Modifier le document:</h2>
+  <h1> <%= @document.name %> de <%= @folder.name %></h1>
+  <div class="action">
+  <div>
+    <%= link_to folder_documents_path do %>
+Retour à la liste des documents de <%= @folder.name %>
+    <% end %>
+  </div>
+  <div>
+
+  </div>
+</div>
+
+</div>
+
+<div class="container-list">
 <%= render 'form', document: @document %>
 
-<%= link_to 'Back', folder_documents_path %>
 </div>

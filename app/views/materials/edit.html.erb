@@ -1,3 +1,13 @@
+<div class="header">
+  <h2>Modifier la facture de:</h2>
+  <h1><%= @material.materialtype %>  <%= @material.brand %> de <%= @material.company %></h1>
+  <div class="action">
+  <div> <%= link_to 'Revenir à la liste des immobilisations', materials_path %></div>
+  <div></div>
+</div>
+
+</div>
+
 <div class="container-form">
 
   <%= render 'form', material: @material %>

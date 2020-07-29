@@ -21,7 +21,6 @@ gem 'popper_js'
 gem 'actionmailer'
 
 gem 'cancancan'
-gem 'rmagick' # optional, for image resizing support
 gem 'carrierwave_direct'
 gem "figaro"
 gem "fog-aws"

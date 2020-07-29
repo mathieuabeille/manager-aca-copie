@@ -1,26 +1,116 @@
 .navbar-lewagon {
-  height: 100px;
-  justify-content: space-between;
-  background: #fffff;
+  width: 75px;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #0e6fde;
+  overflow-x: hidden;
+  padding-top: 20px;
+  display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.menu{
+display: flex;
+flex-direction: column;
+justify-content: space-around;
   a{
-    color: black;
-    font-size: 16px;
+    margin: 10px;
+  text-decoration: none;
+  padding: 12px;
+  font-size: 25px;
+  color: #DFE6ED;
+  display: block;
+    opacity: 0.6;
+
+  }
+    a:hover{
+    opacity: 1;
+    border-radius: 5px;
+    color: white;
   }
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-lewagon {
   flex-grow: 0;
+  background-color: #052040;
+  height: 100vh;
+position: fixed;
+  overflow-x: hidden;
+  padding-top: 20px;
+    z-index: 1;
+  top: 0;
+  left: 0;
+
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-lewagon img {
   width: 75px;
   transition: 0.5s;
-  background-color: white;
-  border-radius: 50%;
   padding: 8px;
-
+  opacity:1;
 }
 
 .navbar-lewagon .navbar-brand:hover img {
   transform: scale(1.05);
+}
+@media (max-width: 640px) {
+.navbar-lewagon {
+  width: 40px;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #052040;
+  overflow-x: hidden;
+  padding-top: 20px;
+  display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.menu{
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+  a{
+    margin: 10px;
+  text-decoration: none;
+  padding: 1px;
+  font-size: 18px;
+  color: #DFE6ED;
+  display: block;
+    opacity: 0.6;
+
+  }
+    a:hover{
+    background-color: #DFE6ED;
+    opacity: 0.6;
+    border-radius: 5px;
+    color: white;
+  }
+}
+
+.navbar-lewagon {
+  flex-grow: 0;
+  background-color: #052040;
+  height: 100vh;
+position: fixed;
+  overflow-x: hidden;
+  padding-top: 20px;
+    z-index: 1;
+  top: 0;
+  left: 0;
+
+}
+
+.navbar-lewagon img {
+  width: 40px;
+  transition: 0.5s;
+  padding: 8px;
+}
 }

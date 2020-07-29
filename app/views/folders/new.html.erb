@@ -1,6 +1,13 @@
-<div class="container-form">
+<div class="header">
+  <h2>Ajouter un dossier à:</h2>
+  <h1>Abeille Consultant & Associés</h1>
+  <div class="action">
+  <div> <%= link_to 'Revenir à la liste des dossiers', root_path %></div>
+  <div></div>
+</div>
 
+</div>
+
+<div class="container-list">
   <%= render 'form', folder: @folder %>
-
-  <%= link_to 'Back', folders_path %>
 </div>

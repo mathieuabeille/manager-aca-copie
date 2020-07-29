@@ -1,49 +1,31 @@
-<div class="tablehead">
-  <div class="fileimg col-1"></div>
-  <div class="info col-1">Nom</div>
-  <div class="info col-1">Entite</div>
-  <div class="info col-1">Type</div>
-  <div class="info col-1">Fournisseur</div>
-  <div class="info col-1">Marque</div>
-  <div class="info col-1">Numero de serie</div>
-  <div class="info col-1">Numero interne</div>
-  <div class="info col-1">Emplacement</div>
-  <div class="info col-1">Action</div>
-</div>
 
-<div class="row">
+<div class="container-material">
+
   <% @materials.each do |material| %>
-
-  <div class="document">
-
-    <div class="fileimg col-1">
-      <%= link_to material do %>
-      <%= image_tag ( "file.png"), class: "image_link" %>
-      <% end %>
-    </div>
-
-    <div class="info col-1">
-      <%= link_to material do %>
-      <%= material.name %>
-      <% end %>
-    </div>
-
-    <div class="info col-1"><%= material.company %></div>
-    <div class="info col-1"><%= material.materialtype %></div>
-    <div class="info col-1"><%= material.supplier %></div>
-    <div class="info col-1"><%= material.brand %></div>
-    <div class="info col-1"><%= material.serial %></div>
-    <div class="info col-1"><%= material.number %></div>
-    <div class="info col-1"><%= material.location %></div>
-
-
-    <div class="edit col-1">
-      <% if current_user.superadmin_role? || current_user.supervisor_role? %>
-      <%= link_to 'Voir', material, class: "btn-flat-edit" %>
-      <%= link_to 'Modifier', edit_material_path(material), class: "btn-flat-edit" %>
-      <%= link_to 'Supprimer', material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-flat-edit" %>
-      <% end %>
-    </div>
+    <%= link_to material do %>
+    <div class="notification">
+      <img src='https://images.unsplash.com/photo-1595860041826-de0b53177bcd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80' class="avatar-large" />
+  <div class="notification-content">
+  <%= link_to material do %>
+    <p><small><%= material.name %></small>
+    <% end %>
+  </p>
+    <p> <i><%= material.brand %></i> </p>
+    <p> <i><%= material.company %></i> </p>
+     </div>
+  <div class="notification-actions">
+  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+  <%= link_to edit_material_path(material) do %>
+    Modifier <i class="fas fa-pencil-alt"></i>
+    <% end %>
+  <%= link_to material, method: :delete, data: { confirm: "Êtes-vous certain de vouloir supprimer la référence?" } do %>
+    Supprimer <i class="far fa-trash-alt"></i>
+    <% end %>
+  <% end %>
   </div>
   <% end %>
 </div>
+
+    <% end %>
+</div>
+

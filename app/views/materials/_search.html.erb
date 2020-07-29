@@ -1,13 +1,18 @@
 <div class="filters">
-  <div>
+  <div style="border-bottom: solid 1px;
+  border-color: #D2DAE6; padding: 30px;
+">
+      <h3>Recherche</h3>
+
    <%= form_tag materials_path, method: 'get' do %>
    <%= text_field_tag :search, params[:search] %>
+   <div class="spacer"></div>
    <%= submit_tag "Recherche", class: 'btn btn-flat' %>
    <% end %>
-   <%= link_to 'Annuler', materials_path, class: 'btn btn-flat-edit' %>
  </div>
- <div>
-   <%= form_for @filter, html: {class: "filters"}  do |f| %>
+ <div style="padding: 30px;">
+  <h3>Filtres par critères</h3>
+   <%= form_for @filter  do |f| %>
    <%= f.select :brand, Material.pluck(:brand).uniq, {include_blank: "Marques"},{ class: 'custom-select'}  %>
    <%= f.select :materialtype, Material.pluck(:materialtype).uniq, {include_blank: "Type"},{ class: 'custom-select'}  %>
    <%= f.select :company, Material.pluck(:company).uniq, {include_blank: "Entite"},{ class: 'custom-select'}  %>
@@ -15,7 +20,6 @@
    <%= f.select :location, Material.pluck(:location).uniq, {include_blank: "Emplacement"},{ class: 'custom-select'}  %>
    <%= f.submit "Filtrer", class: 'btn btn-flat' %>
    <% end %>
-   <%= link_to 'Annuler', materials_path, class: 'btn btn-flat-edit' %>
  </div>
 </div>
 

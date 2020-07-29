@@ -1,18 +1,30 @@
-
-<div class="container-list">
-  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+<div class="header">
+  <h2>Les immobilisations de:</h2>
+  <h1>Abeille Consultants Associés</h1>
+  <div class="action">
+  <div>   <%= link_to 'Réinitialiser les filtres et la recherche', materials_path %>
+</div>  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
   <%= link_to 'Ajouter un appareil', new_material_path, class: "btn-flat" %>
-  <div class="spacer"></div>
-  <% end %>
+  <% end %></div>
+
+</div>
+
+
+<div class="material">
+<div class="filter">
 <div class="filters">
-  <div>
+  <div style="border-bottom: solid 1px;
+  border-color: #D2DAE6; padding: 30px;">
+      <h3>Recherche</h3>
+
    <%= form_tag materials_path, method: 'get' do %>
    <%= text_field_tag :search, params[:search] %>
+   <div class="spacer"></div>
    <%= submit_tag "Recherche", class: 'btn btn-flat' %>
    <% end %>
-   <%= link_to 'Annuler', materials_path, class: 'btn btn-flat-edit' %>
  </div>
- <div>
+ <div style="padding: 30px;">
+  <h3>Filtres par critères</h3>
    <%= form_for @filter, html: {class: "filters"}  do |f| %>
    <%= f.select :brand, Material.pluck(:brand).uniq, {include_blank: "Marques"},{ class: 'custom-select'}  %>
    <%= f.select :materialtype, Material.pluck(:materialtype).uniq, {include_blank: "Type"},{ class: 'custom-select'}  %>
@@ -21,18 +33,27 @@
    <%= f.select :location, Material.pluck(:location).uniq, {include_blank: "Emplacement"},{ class: 'custom-select'}  %>
    <%= f.submit "Filtrer", class: 'btn btn-flat' %>
    <% end %>
-   <%= link_to 'Annuler', materials_path, class: 'btn btn-flat-edit' %>
  </div>
 </div>
 
 
+</div>
 
 
 
-  <div class="spacer"></div>
-
-
-  <div class="spacer"></div>
+<div class="container-material">
+  <div class="tablehead">
+  <div class="fileimg col-1"></div>
+  <div class="info col-1">Nom</div>
+  <div class="info col-1">Entite</div>
+  <div class="info col-1">Type</div>
+  <div class="info col-1">Fournisseur</div>
+  <div class="info col-1">Marque</div>
+  <div class="info col-1">Numero de serie</div>
+  <div class="info col-1">Numero interne</div>
+  <div class="info col-1">Emplacement</div>
+  <div class="info col-1">Action</div>
+</div>
   <% @filter.search_materials.each do |material| %>
 
   <div class="row document">
@@ -69,3 +90,10 @@
   </div>
   <% end %>
 </div>
+
+</div>
+
+
+
+
+

@@ -1,16 +1,17 @@
-
-
-
-<div class="container-list">
-  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+<div class="header">
+  <h2>Les immobilisations de:</h2>
+  <h1>Abeille Consultants Associés</h1>
+  <div class="action">
+  <div>
+</div>  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
   <%= link_to 'Ajouter un appareil', new_material_path, class: "btn-flat" %>
-  <div class="spacer"></div>
-  <% end %>
-    <%= render 'search' %>
+  <% end %></div>
 
-  <div class="spacer"></div>
+</div>
 
-   <div class="spacer"></div>
+
+<div class="material">
+  <%= render 'search' %>
   <%= render 'materials', materials: @materials %>
 </div>
 

@@ -1,47 +1,51 @@
+<div class="header">
+  <h2>Consulter les documents de</h2>
+  <h1> <%= @folder.name %></h1>
+  <div class="action">
+  <div> <%= link_to 'Revenir à la liste des dossiers', root_path %></div>
+   <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+  <%= link_to 'Ajouter un document', new_folder_document_path, class: "btn-flat" %>
+  <% end %>
+</div>
+
+</div>
+
+
 <div class="container-list">
 
-  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
-  <%= link_to 'Ajouter un document', new_folder_document_path, class: "btn-flat" %>
-  <div class="spacer"></div>
-  <% end %>
 
   <% @documents.each do |document| %>
 
-  <div class="row document">
-
-    <div class="fileimg">
       <%= link_to document.document.url do %>
-      <%= image_tag ( "file.png"), class: "image_link" %>
-      <% end %>
-
-    </div>
-
-    <div class="title">
+    <div class="notification">
+      <img src='https://images.unsplash.com/photo-1471970471555-19d4b113e9ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80' class="avatar-large" />
+  <div class="notification-content">
       <%= link_to document.document.url do %>
-      <%= document.name %>
-      <% end %>
-    </div>
-
-    <div class="info">
-      <p> <i>Crée le <%= document.created_at %></i> </p>
-    </div>
-    <div class="info">
-     <p> <i>Modifié le <%= document.updated_at %></i> </p>
-
-   </div>
-
-
-   <div class="edit">
-    <% if current_user.superadmin_role? || current_user.supervisor_role? %>
-    <%= link_to 'Modifier',  edit_folder_document_path(@folder, document), class: "btn-flat-edit" %>
-    <%= link_to 'Supprimer',[@folder, document], method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn-flat-delete" %>
+    <p><small><%= document.name %></small>
     <% end %>
+  </p>
+    <p> <i>Crée le <%= document.created_at %></i> </p>
+    <p> <i>Modifié le <%= document.updated_at %></i> </p>
+     </div>
+  <div class="notification-actions">
+  <% if current_user.superadmin_role? || current_user.supervisor_role? %>
+  <%= link_to edit_folder_document_path(@folder, document) do %>
+    Modifier <i class="fas fa-pencil-alt"></i>
+    <% end %>
+  <%= link_to [@folder, document], method: :delete, data: { confirm: 'Êtes-vous certain de vouloir supprimer ce fichier?' } do %>
+    Supprimer <i class="far fa-trash-alt"></i>
+    <% end %>
+  <% end %>
   </div>
-
-</div>
+  <% end %>
+  </div>
 <% end %>
-<div class="spacer"></div>
-<%= link_to 'Retour',  root_path, class: "btn-flat-edit" %>
+
+
+
+
+
+
 
 </div>
 

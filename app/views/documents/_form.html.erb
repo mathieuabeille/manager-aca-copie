@@ -5,14 +5,12 @@
 
 <div class="form-inputs">
   <%= f.input :name, label: 'Nom du document' %>
-  <%= f.input :order, label: 'Ordre' %>
   <div>
-    <%= f.label :document %>
     <%= f.file_field :document %>
   </div>
 </div>
-
+<div class="spacer"></div>
 <div class="form-actions btn btn-flat">
-  <%= f.button :submit, "Ajouter de document" %>
+  <%= f.button :submit, "Ajouter le fichier" %>
 </div>
 <% end %>

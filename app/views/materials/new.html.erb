@@ -1,6 +1,14 @@
-<div class="container-form">
+<div class="header">
+  <h2>Ajouter une immobilisation à:</h2>
+  <h1>Abeille Consultant & Associés</h1>
+  <div class="action">
+  <div> <%= link_to 'Revenir à la liste des immobilisations', materials_path %></div>
+  <div></div>
+</div>
+
+</div>
+
+<div class="container-list">
 
   <%= render 'form', material: @material %>
-
-  <%= link_to 'Back', materials_path %>
 </div>
