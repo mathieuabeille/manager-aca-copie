@@ -1,28 +1,31 @@
 <div class="navbar-lewagon">
   <div class="logo">
   <%= link_to root_path do %>
-  <%= image_tag ("logo.png")  %>
+  <h1>Rise</h1>
   <% end %>
 </div>
 
 <div class="menu">
     <% if user_signed_in? %>
 
-          <%= link_to  root_path do %>
-    <i class="fa fa-folder" aria-hidden="true"></i>
-<% end %>
-      <%= link_to  materials_path do %>
-      <i class="fa fa-laptop" aria-hidden="true"></i>
+    <%= link_to  invoices_path do %>
+      <i class="fas fa-piggy-bank" aria-hidden="true"></i>
 <% end %>
 
+    <%= link_to  invoices_path do %>
+      <i class="fas fa-receipt" aria-hidden="true"></i>
+<% end %>
+
+
+
       <%= link_to  invoices_path do %>
-      <i class="fa fa-credit-card" aria-hidden="true"></i>
+      <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i>
 <% end %>
 
 
 
       <%= link_to destroy_user_session_path, method: :delete do %>
-           <i class="fa fa-times" aria-hidden="true"></i>
+           <i class="fas fa-cog" aria-hidden="true"></i>
 <% end %>
 
 

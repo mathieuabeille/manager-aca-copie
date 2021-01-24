@@ -4,3 +4,95 @@
   background-color: red;
   text-color: #fff;
 }
+
+.invoice-container{
+  margin-left: 75px;
+  width: calc(100vw-75px);
+  background-color: $light-gray;
+  display: flex;
+       .select{
+    border-color: $light-gray;
+     font-size: $size4;
+     }
+  .right{
+    width: 30vw;
+    margin: $size5;
+    padding: $size5;
+    min-height: 60vh;
+    font-size: $size4;
+    background-color:white;
+    border: 1px solid $light-gray;
+  }
+
+  .invoice-filler{
+
+    width: 70vw;
+    background-color: white;
+    margin: $size5;
+    padding: $size5;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    .top{
+      display:flex;
+      justify-content:space-between;
+      padding: $size5;
+      font-size: $size4;
+      img{
+        width: 75px;
+      }
+    }
+    .invoiceline{
+      padding-top: $size5!important;
+      th{
+              font-size:$size4;
+                            text-align: left;
+
+      }
+      td {
+              font-size:$size4;
+              padding: 0.2rem;
+              text-align: left;
+      input{
+      border-color: $light-gray;
+      font-size: $size4;
+      padding: 0.1rem;
+      }
+      select{
+              border-color: $light-gray;
+      font-size:$size4;
+      padding-left: 0px;
+      margin-left: 0px;
+
+      }
+      form{
+      display:flex;
+      font-size:$size4;
+    }
+  }
+    }
+    .date{
+           padding-top: $size5;
+           font-size: $size4;
+           width: 33%;
+    }
+    .client{
+     font-size: $size4;
+     padding-top: $size5;
+     padding-left: 10vw;
+     width: 300px;
+     .form-group{
+      padding: 0px;
+      margin: 0px;
+     }
+     .select{
+    border-color: $light-gray;
+     font-size: $size4;
+     }
+     input{
+     }
+     .action{
+      display: flex;
+      justify-content: flex-end;
+     }
+    }
+  }
+}

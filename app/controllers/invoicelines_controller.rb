@@ -31,7 +31,7 @@ class InvoicelinesController < ApplicationController
 
     respond_to do |format|
       if @invoiceline.save
-        format.html { redirect_to invoice_path(@invoiceline.invoice), notice: 'Ligne créé.' }
+        format.html { redirect_to edit_invoice_path(@invoiceline.invoice), notice: 'Ligne créé.' }
         format.json { render :show, status: :created, location: @invoiceline }
       else
         format.html { render :new }
@@ -60,7 +60,7 @@ class InvoicelinesController < ApplicationController
   def destroy
     @invoiceline.destroy
     respond_to do |format|
-      format.html { redirect_to invoice_path(@invoiceline.invoice), notice: 'Ligne supprimée.' }
+      format.html { redirect_to edit_invoice_path(@invoiceline.invoice), notice: 'Ligne supprimée.' }
       format.json { head :no_content }
     end
   end

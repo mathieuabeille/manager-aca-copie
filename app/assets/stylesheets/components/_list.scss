@@ -6,7 +6,7 @@
   background-color: #F4f4f4;
   border-bottom: solid 1px;
   border-right: solid 1px;
-  border-color: #D2DAE6;
+  border-color: $light-gray;
   margin-left: 75px;
   min-width: 400px;
   width: 30vw;
@@ -19,28 +19,119 @@
 }
 
 .header{
-  height: 30vh;
-    margin-left: 75px;
-    background-color: #F7F9FC;
-    display: flex;
+  margin-left: 75px;
+  display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding: 30px;
-  border-bottom: solid 1px;
-  border-color: #D2DAE6;
+  padding: $size5;
+  border-bottom: solid 1px $light-gray;
   h1{
-    font-size:32px;
+    font-size:$size5;
   }
   h2{
-    font-size: 18px;
+    font-size: $size6;
+    color: $blue;
+    font-style: bold;
   }
 }
 
-.container-list {
-  background-color: #fff;
-  padding: 40px;
+.container-show{
+  background-color: #E3E5F3;
   min-height: 90vh;
-    margin-left: 75px; /* Same as the width of the sidenav */
+  margin-left: 75px;
+  display: flex;
+  padding: $size5;
+  .left-container{
+    background-color: white;
+  padding: $size5;
+    width: 650px;
+    margin: auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+  th{
+    border-color: $light-gray;
+  }
+  td{
+    border-color: $light-gray;
+  }
+  tr:hover{
+    background-color: $light-gray;
+  }
+  }
+}
+  .right-container{
+  padding: $size5;
+  width: 100%;
+  margin-left: $size5;
+  border: solid 1px $light-gray;
+background-color: white;
+  .head{
+      border-bottom: solid 1px $light-gray;
+  padding-left: $size6;
+
+    h2{
+      font-size: $size6;
+      color: $blue;
+    }
+  }
+
+}
+
+.container-list {
+  background-color: #E3E5F3;
+  min-height: 90vh;
+  margin-left: 75px;
+  display: flex;
+  padding: $size5;
+
+  .left-container{
+    background-color: white;
+  padding: $size5;
+    width: 45vw;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+  th{
+    border-color: $light-gray;
+  }
+  td{
+    border-color: $light-gray;
+  }
+  tr:hover{
+    background-color: $light-gray;
+  }
+  }
+  .right-container{
+  padding: $size5;
+  width: 45vw;
+  margin-left: $size5;
+  border: solid 1px $light-gray;
+background-color: white;
+  .head{
+      border-bottom: solid 1px $light-gray;
+  padding-left: $size6;
+
+    h2{
+      font-size: $size6;
+      color: $blue;
+    }
+  }
+  .bottom{
+      display: flex;
+    font-size: $size4;
+  justify-content: space-between;
+
+  }
+  .content{
+      padding: $size5;
+.top{
+  display: flex;
+  justify-content: space-between;
+  a{
+    font-size: $size3;
+  }
+}
+  }
+  } /* Same as the width of the sidenav */
 
 }
 
@@ -210,21 +301,7 @@
   margin: auto;
 }
 
-tr {
-  display: table;
-  vertical-align: middle;
-  padding: 10px;
-  width: 100%;
-  margin: auto;
-  border-bottom: solid;
-  border-color: $blue;
-  border-width: 1px;
-}
 
-td:hover{
-  background-color: #f4f4f4;
-
-}
 
 .document:hover {
   background-color: #f4f4f4;
@@ -307,7 +384,8 @@ td:hover{
 .table-invoice-line{
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: $size1;
+  font-size: $size4;
 }
 
 .cta{
@@ -349,23 +427,7 @@ td:hover{
 }
 
 
-.header{
-  height: 30vh;
-    margin-left: 40px;
-    background-color: #F7F9FC;
-    display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  padding: 30px;
-  border-bottom: solid 1px;
-  border-color: #D2DAE6;
-  h1{
-    font-size:18px;
-  }
-  h2{
-    font-size: 14px;
-  }
-}
+
 .material{
        display: flex;
   justify-content: space-around;
@@ -374,9 +436,9 @@ td:hover{
 
 .filter{
   width: 100%;
-  border-color: #D2DAE6;
+  border-color: $light-gray;
   border-right: solid 1px;
-  border-color: #D2DAE6;
+  border-color: $light-gray;
     display: flex;
   justify-content: space-between;
   flex-direction: column;

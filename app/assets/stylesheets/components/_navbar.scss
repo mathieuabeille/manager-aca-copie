@@ -5,12 +5,25 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #0e6fde;
+  background-color: #FFE227;
   overflow-x: hidden;
   padding-top: 20px;
   display: flex;
 flex-direction: column;
 justify-content: space-between;
+h1{
+  font-size: 1.953rem;
+  padding: 0.3rem;
+    color: #FFf;
+margin: auto;
+}
+h1:hover{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+
+}
 }
 
 .menu{
@@ -22,21 +35,24 @@ justify-content: space-around;
   text-decoration: none;
   padding: 12px;
   font-size: 25px;
-  color: #DFE6ED;
+  color: #FFf;
   display: block;
-    opacity: 0.6;
+  text-align: center;
 
   }
     a:hover{
     opacity: 1;
+    transform: scale(1.15);
+  transition: transform 0.6s;
+
     border-radius: 5px;
-    color: white;
   }
 }
 
 .navbar-lewagon {
   flex-grow: 0;
-  background-color: #052040;
+  background-color: #3066BE;
+  border-right: solid 1px #F6F8FA;
   height: 100vh;
 position: fixed;
   overflow-x: hidden;

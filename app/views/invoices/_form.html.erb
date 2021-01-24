@@ -1,20 +1,281 @@
+<div class="invoice-container">
+  <div class="invoice-filler">
 
-<%= simple_form_for(@invoice) do |f| %>
-<%= f.error_notification %>
-<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<div class="form-inputs">
-  <%= f.input :name, label: "Nom du devis"  %>
-  <%= f.input :author, label: "Auteur du devis" %>
-  <%= f.input :email, label: "Email de l'auteur du devis" %>
-  <%= f.association :client,  as: :select, label: "Nom du client" %>
-  <p>  <%= link_to 'Ajouter un client', new_client_path, class: 'btn-flat-edit btn' %>
-  </p>
-  <%= f.input :status, collection:["Créé", "Soumis", "paiement effectué"], label: "Status du devis", default: "Créé" %>
-  <%= f.input :invoicetype, collection:[ "Social", "Juridique"], prompt: "Comptabilité", label: "Type du devis" %>
+
+    <div class="top">
+      <%= image_tag ('https://media-exp1.licdn.com/dms/image/C4E0BAQFPOivHFXWqYw/company-logo_200_200/0/1521810001068?e=2159024400&v=beta&t=Rn_Td_0xCBZ2drU639qU9cbJTbf_oASXBBoIpnhQ19w') %>
+      <div>FACTURE N° <%= invoice_number(@invoice) %></div>
+    </div>
+
+
+ <div class="client">
+  <%= simple_form_for(@invoice) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <%= f.association :client, label: false, include_blank: "Client" %>
+      <div class="action">
+       <button type="button" class="btn btn-flat-form" data-toggle="modal" data-target="#create">
+          Ajouter
+        </button>
+        <%= f.button :submit, "Valider", class: "btn btn-flat-form" %>
+      </div>
+      <% end %>
+
+      <!-- Modal -->
+      <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="create" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ajouter un client</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <%= simple_form_for  @clientnew do |f| %>
+              <%= f.error_notification %>
+              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+                         <div class="form-inputs">
+                <%= f.input :lastinvoice, :as => :hidden, :input_html => { value: @invoice.id } %>
+                <%= f.input :name, label: false, placeholder: "Nom de l'entreprise" %>
+                <%= f.input :address, label: false, placeholder: "Adresse" %>
+                <%= f.input :leader,  label: false, placeholder: "Nom du destinaire" %>
+                <%= f.input :email, label: false, placeholder: "Email du client" %>
+              </div>
+
+              <div class="modal-footer">
+                <%= f.button :submit, "Soumettre", class: "btn btn-flat" %>
+            <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br/>
+      <% if @client.present? %>
+        <b><%= @client.name  %></b>
+         <br/><%= @client.leader  %>
+          <br/><%= @client.address  %>
+        <% else %>
+        <b>Nom de la société</b>
+ <br/>Nom du destinaire
+      <br/>Addresse
+      <% end %>
+
+      <% if @client.present? %>
+      <div class="action">
+       <button type="button" class="btn btn-flat-form" data-toggle="modal" data-target="#edit">
+          Modifier
+        </button>
+              <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modifier le client</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <%= simple_form_for(@client) do |f| %>
+              <%= f.error_notification %>
+              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+                         <div class="form-inputs">
+                <%= f.input :name, label: false, placeholder: "Nom de l'entreprise" %>
+                <%= f.input  :address, label: false, placeholder: "Adresse" %>
+                <%= f.input :leader,  label: false, placeholder: "Nom du destinaire" %>
+                <%= f.input :email, label: false, placeholder: "Email du client" %>
+              </div>
+
+              <div class="modal-footer">
+                <%= f.button :submit, "Soumettre", class: "btn btn-flat" %>
+            <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <% end %>
+</div>
+      </div>
+
+      <br/><br/>
+                <table class="table invoiceline">
+                  <thead>
+                    <tr>
+                       <th style="width: 33%"><b>Libellé</b></th>
+                        <th style="width: 5%"><b>Qté</b></th>
+                        <th style="width: 10%"><b>Prix</b></th>
+                        <th style="width: 10%"><b>Total HT</b></th>
+                        <th style="width: 10%"><b>TVA</b></th>
+                        <th style="width: 10%"><b>Total TTC</b></th>
+                        <th style="width: 10%"><b>Action</b></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+    <tr>
+                <%= simple_form_for [@invoice, @invoiceline] do |f| %>
+                    <td scope="col-6">
+                      <%= f.input :name, label: false %>
+                    </td>
+                    <td>
+                      <%= f.input :quantity, label: false  %>
+                    </td>
+                    <td>
+                      <%= f.input :price, label: false %>
+
+                      </td>
+                   <td>
+
+                  </td>
+                   <td>
+                  <%= f.input :label_id, collection: ['20%', '10%', '0'], default: '20%', label: false %>
+
+                  </td>
+                   <td>
+
+                  </td>
+                  <td>
+                    <%= f.submit "+", class: "btn btn-flat-form"%>
+                  </td>
+                  <% end %>
+    </tr>
+   <% @invoice.invoicelines.each do |invoiceline| %>
+      <tr>
+
+        <td>
+          <% if invoiceline.name.present? %>
+          <%= invoiceline.name %>
+          <% else %>
+          <% end %>
+        </td>
+
+        <td><%= invoiceline.quantity %></td>
+        <td>
+          <% if invoiceline.price.present? %>
+          <%= invoiceline.price %> €
+          <% else %>
+          Saisir un tarif
+          <% end %>
+        </td>
+          <td>
+
+          <%= (invoiceline.price.to_i)*(invoiceline.quantity.to_i) %>  €
+
+        </td>
+        <td>
+
+          <%= invoiceline.label_id.to_i %> %
+
+        </td>
+        <td>
+          <%= (invoiceline.price.to_i)*(invoiceline.quantity.to_i)*(1+(invoiceline.label_id.to_i*0.01)) %>  €
+        </td>
+
+        <td>
+          <p><%= link_to 'x', invoice_invoiceline_path(@invoice, invoiceline), method: :delete, data: { confirm: 'Etes vous certain?' }, class: "btn btn-flat-form" %>
+          </p>
+        </td>
+     </tr>
+
+      <% end %>
+
+  </tbody>
+</table>
+
+    <div class="table-invoice">
+      <div class="table-invoice-line">
+        <div class="col-2"><b>Total HT:</b></div>
+        <div class="col-2"><%= compute_invoice(invoice).round(2) %>€
+ </div>
+
+      </div>
+    </div>
+    <div class="table-invoice">
+      <div class="table-invoice-line">
+        <div class="col-2"><b>Total TTC:</b></div>
+        <div class="col-2"><%= (compute_invoice(invoice).round(2)*(1.2))  %> €</div>
+
+      </div>
+    </div>
+
+      <div class="date">
+        <p>          <%= simple_form_for(@invoice) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <%= f.input :days, label: 'Echéance', collection: ['30 jours', '45 jours'], default: '30jours' %>
+      <div class="action">
+        <%= f.button :submit, "Valider", class: "btn btn-flat-form" %>
+      </div>
+      <% end %></p>
+
+<p>Crée le: <%= @invoice.created_at.strftime('%d/%m/%y ')  %>
+<br/>Echéanche: <%= (@invoice.created_at + @invoice.days.to_i.days).strftime('%d/%m/%y ') %> </p>
+
+      </div>
+      </div>
+
+
+
+
+
+
+<div class="right">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+                  <a href="#" class= "nav-link ">Envoyer</a>
+      </li>
+      <li class="nav-item">
+                  <a href="#" class= "nav-link">Relancer</a>
+      </li>
+         <li class="nav-item">
+                  <%= link_to 'Voir', preview_path(invoice, format: 'pdf'), class: "nav-link" %>
+      </li>
+             <li class="nav-item">
+                  <%= link_to 'Télécharger', preview_path(invoice, format: 'pdf'),  download: true,class: "nav-link" %>
+      </li>
+         <li class="nav-item">
+                <%= link_to 'Supprimer', invoice, method: :delete, data: { confirm: 'Etes vous certain?' }, class: "nav-link" %>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+<br/>
+<b>Information sur la facture</b><br/><br/>
+<p>Destinataire:<% if @client.present? %>
+        <%= @client.email  %>
+     <% end %> </p>
+<p>Crée le: <%= @invoice.created_at.strftime('%y/%m/%y ')  %></p>
+<p>Echéanche: <%= (@invoice.created_at + @invoice.days.to_i.days).strftime('%d/%m/%y ') %> </p>
+<p>Statut: <span class="badge badge-primary"><%= invoice.status %></span></p>
+
+
+<b>Information sur l'entreprise </b><br/><br/>
+<p>Adresse: <%= @user.address  %></p>
+<p>Banque: <%= @user.bank  %></p>
+<p>RIB: <%= @user.bank  %></p>
+<p>Siret: <%= @user.siret  %></p>
+<p><%= link_to 'Modifier',edit_user_registration_path, class: "btn btn-flat" %>
+</p>
+
 </div>
 
-<div class="form-actions">
-  <%= f.button :submit, "Soumettre", class: "btn btn-flat" %>
+
+
+
+  </div>
+
+
 </div>
-<% end %>

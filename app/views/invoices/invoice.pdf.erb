@@ -14,11 +14,28 @@
     <style media="screen" type="text/css">
       p{
         font-family: 'Open Sans', sans-serif;
+                    line-height: 1;
+
       }
+
+      h2{
+               font-family: 'Open Sans', sans-serif;
+
+      }
+
+
+
+          .mycompany{
+margin-left: 66%;
+        }
+        .client{
+margin-left: 16%;
+
+        }
       .table-invoice{
 
         border : solid;
-        border-color: #f4f4f4;
+          border-color: #E3E5F3;
         border-width: 1px;
       }
       .table-invoice-line{
@@ -31,31 +48,38 @@
         justify-content: space-between;
         padding: 10px;
       }
+           thead {
+        border: 1px solid #E3E5F3;
+
+      }
+      tbody{
+                border: 1px solid #E3E5F3;
+
+      }
 
       table,
       table{
         font-family: 'Open Sans', sans-serif;
         width: 900px;
-      }
-      td {
-        border: 1px solid #f4f4f4;
+        border: 1px solid #E3E5F3;
         padding: 10px;
-        border-radius: 5px;
-        text-align: right;
+
+      }
+      tr {
+        border: 1px solid #E3E5F3;
+        padding: 10px;
+        text-align: left;
       }
 
       th  {
-        border-radius: 5px;
-        padding: 10px;
+        border: 1px solid #E3E5F3;
+                padding: 10px;
 
       }
 
-      thead,
+
       tfoot {
-        background-color: #004A85;
-        color: #f4f4f4;
         padding: 10px;
-        border-radius: 5px;
       }
 
 
@@ -69,16 +93,31 @@
       <div class="navbar">
 
         <div>
-          <%= wicked_pdf_image_tag 'logo.png' ,:width => "75"  %>
-          <div style="padding-left: 600px;">
+          <%= wicked_pdf_image_tag 'https://media.licdn.com/dms/image/C4E0BAQFPOivHFXWqYw/company-logo_200_200/0?e=2159024400&v=beta&t=Gkg9S-GkijiRiIsGyRNzuXoIP8axduxBKm9GrfsgwGg' ,:width => "75"  %>
+
+          <div class="address">
+  <div class="client">
             <b><h3><p><%= @invoice.client.name  %></p></h3></b>
             <p><%= @invoice.client.leader %>,</p>
             <p>          <%= @invoice.client.address %></p>
+          </div>
+           <div class="mycompany">
+            <b><h3><p><%= @user.entreprise  %></p></h3></b>
+            <p><%= @user.address %>,</p>
+            <p>          <%= @user.siret %></p>
             <p>le  <%= @invoice.created_at.strftime("%F") %> </p>
           </div>
+          </div>
+
+
+
+
+
+
+
           <div style="height: 30px;"></div>
 
-          <div style="text-align: center; color: #004A85"><p>   <h2>  <b>Devis: </b>  <%= @invoice.name if @invoice.name.present?  %></p></h2>
+          <div style="text-align: center;"><p>   <h2>  <b>FACTURE N°: </b> <%= invoice_number(@invoice) %></p></h2>
           </div>
         </div>
 
@@ -87,7 +126,7 @@
         <table>
           <div>
             <thead>
-              <tr>
+              <tr style="border: 1px solid #E3E5F3;">
                 <th>Libellés</th>
                 <th>Quantité</th>
                 <th>Prix</th>
@@ -96,7 +135,7 @@
           </div>
           <tbody>
            <% @invoice.invoicelines.each do |invoiceline| %>
-           <tr>
+           <tr style="border: 1px solid #E3E5F3;">
             <td>
               <b>           <% if invoiceline.name.present? %>
                <%= invoiceline.name %>
@@ -127,27 +166,32 @@
          </table>
          <table>
           <thead>
-            <tr>
+            <tr style="border: 1px solid #E3E5F3;">
               <th colspan="3">Montant du devis</th>
 
             </tr>
           </thead>
           <tbody>
-           <tr>
+           <tr style="border: 1px solid #E3E5F3;">
             <td colspan="2">HT:</td>
             <td colspan="1"><b>   <%= @sum %> €</b></td>
           </tr>
-          <tr>
+          <tr style="border: 1px solid #E3E5F3;">
             <td colspan="2">TTC:</td>
             <td colspan="1"><b> <%= @sumttc %> €</b></td>
           </tr>
         </tbody>
       </table>
       <div style="height: 100px;"></div>
-      <div style="padding-left: 600px;"><p><b><h3><%= @invoice.author %></h3></b></p></div>
+      <div style="padding-left: 600px;">
+<p>Crée le: <%= @invoice.created_at.strftime('%y/%m/%y ')  %></p>
+<p>Echéanche: <%= (@invoice.created_at + @invoice.days.to_i.days).strftime('%d/%m/%y ') %> </p>
+        <p>Siret: <%= @user.siret %></p>
+        <p>Compte Bancaire: <%= @user.bank %></p>
+        <p>Siret: <%= @user.siret %></p>
+      </div>
       <div style="height: 30px;"></div>
 
-      <div style="padding-left: 600px;"><p><b><h3>Signature</h3></b></p></div>
 
 
 

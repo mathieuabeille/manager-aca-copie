@@ -1,120 +1,63 @@
-<div class="container-list">
-
-  <%= link_to 'Voir la facture', preview_path(@invoice), class: "btn-flat btn"  %>
-  <%= link_to 'Télécharger au format PDF', preview_path(@invoice, format: 'pdf'), class: "btn-flat btn"  %>
-
-  <%= link_to 'Modifier', edit_invoice_path(@invoice), class: "btn btn-flat" %>
-  <%= link_to 'Retour', invoices_path %>
-  <div>
-    <div style="padding-top: 20px;"></div>
-    Lien du devis à envoyer au client: <input type="text" value="http://aca-manager.herokuapp.com/invoices/preview/<%= @invoice.id %>" id="myInput" style="width: 500px;">
-
-    <!-- The button used to copy the text -->
+<div class="header">
+  <div class="action">
+  <h2>Vos factures</h2>
+  <%= link_to 'Nouvelle Facture', new_invoice_path, class: "btn btn-flat" %>
   </div>
-  <div class="spacer"></div>
-  <div class="row">
-    <div class="commentbox col-sm-3">
-     <p>
-      <strong>Nom:</strong>
-      <%= @invoice.name %>
-    </p>
-    <p>
-      <strong>Auteur:</strong>
-      <%= @invoice.author %>
-    </p>
-    <p><%= @invoice.email %></p>
-    <p>
-      <strong>Status:</strong>
-      <%= @invoice.status %>
-    </p>
+</div>
 
-    <p>
-      <strong>Type:</strong>
-      <%= @invoice.invoicetype %>
-    </p>
 
-    <p>
-      <strong>Client:</strong>
-      <%= @invoice.client.name %>
-    </p>
+<div class="container-show">
+  <div class="left-container">
+    <iframe src="http://localhost:3000/invoices/preview/<%= @invoice.id %>.pdf" width="600" height="780" style="border: none;"> </iframe>
   </div>
 
-  <div class="commentbox col-sm-3">
-    <h3>Ajouter une ligne : </h3>
-    <div class="spacer"></div>
-    <%= simple_form_for [@invoice, @invoiceline] do |f| %>
-    <%= f.association :label, prompt: "Liste des libéllés", label: "Selectionner un libéllé" %>
-    <%= f.input :name, label: "Saisir le libellé" %>
-    <%= f.input :price, label: "Modifier le prix" %>
-    <%= f.input :quantity, label: "Modifier la quantité", input_html: {value: f.object.quantity || '1'}  %>
-    <%= f.submit "Ajouter", class: "btn btn-flat"%>
-    <% end %>
+
+  <div class="right-container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+                  <a href="#" class= "nav-link ">Envoyer</a>
+      </li>
+      <li class="nav-item">
+                  <a href="#" class= "nav-link">Relancer</a>
+      </li>
+
+         <li class="nav-item">
+                  <%= link_to 'Voir', preview_path(@invoice, format: 'pdf'), class: "nav-link" %>
+      </li>
+                   <li class="nav-item">
+                  <%= link_to 'Télécharger', preview_path(invoice, format: 'pdf'),  download: true, class: "nav-link" %>
+      </li>
+         <li class="nav-item">
+                <%= link_to 'Supprimer', @invoice, method: :delete, data: { confirm: 'Etes vous certain?' }, class: "nav-link" %>
+      </li>
+
+    </ul>
   </div>
+</nav>
+<br/>
+<b>Information sur la facture</b><br/><br/>
+<p>Destinataire:<% if @client.present? %>
+        <%= @client.email  %>
+     <% end %> </p>
+<p>Crée le: <%= @invoice.created_at.strftime('%y/%m/%y ')  %></p>
+<p>Echéanche: <%= (@invoice.created_at + @invoice.days.to_i.days).strftime('%d/%m/%y ') %> </p>
+<p>Statut: <span class="badge badge-primary"><%= @invoice.status %></span></p>
 
-  <div class="spacer"></div>
 
-  <div class="col-sm-5">
-
-    <div class="table-invoice">
-      <div class="table-invoice-line">
-
-        <div class="col-6"><b>Libellé</b></div>
-        <div class="col-2"><b>Qté</b></div>
-        <div class="col-2"><b>Prix</b></div>
-        <div class="col-2"><b>Action</b></div>
-
-      </div>
-    </div>
-
-    <div class="table-invoice">
-      <% @invoice.invoicelines.each do |invoiceline| %>
-      <div class="table-invoice-line">
-
-        <div class="col-6">
-          <% if invoiceline.name.present? %>
-          <%= invoiceline.name %>
-          <% else %>
-          <%= invoiceline.label.name %>
-          <% end %>
-        </div>
-
-        <div class="col-2"><%= invoiceline.quantity%></div>
-        <div class="col-2">
-          <% if invoiceline.price.present? %>
-          <%= invoiceline.price %>
-          <% elsif invoiceline.label.present? && invoiceline.label.price != nil %>
-          <%= invoiceline.label.price %>
-          <% elsif invoiceline.label.price == nil && invoiceline.label.price == 0 %>
-          Saisir un tarif
-          <% else %>
-          Saisir un tarif
-          <% end %>
-        </div>
-        <div class="col-2">
-          <p><%= link_to 'Modifier', edit_invoice_invoiceline_path(@invoice, invoiceline), class: "btn-flat-edit" %></p>
-          <p><%= link_to 'Supprimer', invoice_invoiceline_path(@invoice, invoiceline), method: :delete, data: { confirm: 'Etes vous certain?' }, class: "btn-flat-edit" %>
-          </p>
-        </div>
-      </div>
-
-      <% end %>
-    </div>
-    <div class="table-invoice">
-      <div class="table-invoice-line">
-        <div class="col-1"><b>Total HT:</b></div>
-        <div class="col-2"><%= @sum %> €</div>
-
-      </div>
-    </div>
-    <div class="table-invoice">
-      <div class="table-invoice-line">
-        <div class="col-1"><b>Total TTC:</b></div>
-        <div class="col-2"><%= @sumttc %> €</div>
-
-      </div>
-    </div>
-
+<b>Information sur l'entreprise </b><br/><br/>
+<p>Adresse: <%= @user.address  %></p>
+<p>Banque: <%= @user.bank  %></p>
+<p>RIB: <%= @user.bank  %></p>
+<p>Siret: <%= @user.siret  %></p>
+<p><%= link_to 'Modifier',edit_user_registration_path, class: "btn btn-flat" %>
+</p>
 
   </div>
 </div>
-</div>
+

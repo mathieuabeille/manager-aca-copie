@@ -1,9 +1,9 @@
 .btn-flat {
   color: white;
-  padding: 6px 19px;
-  border-radius: 3px;
-  font-size: 16px;
-  background: #052040;
+  padding: $size1 $size7;
+  border-radius:30px;
+  font-size: $size4;
+  background: $blue;
   transition: background 0.3s ease;
   input{
     color: white;
@@ -17,8 +17,10 @@ padding: 10px;
 }
 
 .btn-flat:hover {
-  background: #052040;
+  background: $blue;
   color: white;
+      transform: scale(1.05);
+  transition: transform 0.6s;
   text-decoration: none;
 
 }
@@ -29,12 +31,12 @@ padding: 10px;
   padding: 3px 8px;
   border-radius: 2px;
   font-size: 10px;
-  background: #052040;
+  background: $blue;
   transition: background 0.3s ease;
 }
 
 .btn-flat:hover {
-  background: #052040;
+  background: $blue;
   color: white;
   text-decoration: none;
 
@@ -75,13 +77,28 @@ padding: 10px;
 
 .btn-flat-edit {
   color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 1px;
+  font-size: $size4;
+  padding: 2px $size5;
+  border-radius: 20px;
   background: $blue;
   transition: background 0.3s ease;
 }
 
+.btn-flat-form {
+  color: white;
+  font-size: $size1;
+  padding: 2px $size3 !important;
+  border-radius: 20px;
+  background: $blue;
+  transition: background 0.3s ease;
+  margin: $size1;
+}
+
+.btn-flat-form:hover {
+background: #00355e;
+  color: white;
+  text-decoration: none;
+}
 .btn-flat-edit:hover {
   background: #00355e;
   color: white;
