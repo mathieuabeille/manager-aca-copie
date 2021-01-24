@@ -1,4 +1,4 @@
-source 'http://insecure.rails-assets.org'
+source 'https://rubygems.org'
 ruby '2.6.6'
 
 gem 'bootsnap', require: false
@@ -48,7 +48,7 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
-source 'http://insecure.rails-assets.org' do
+source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
   # add the line below
   gem 'rails-assets-chosen'
